@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { TypingRoles } from "@/components/portfolio/TypingRoles";
-import sentinelImg from "@/assets/project-sentinel.jpg";
-import ledgerImg from "@/assets/project-ledger.jpg";
-import cloudImg from "@/assets/project-cloud.jpg";
+import sentinelImg from "@/assets/project-unipulse.jpg";
+import ledgerImg from "@/assets/Password-Strength-Analyzer.jpg";
+import cloudImg from "@/assets/gold-priceML.jpg";
 import portraitImg from "@/assets/portrait.jpg";
 
 export const Route = createFileRoute("/")({
@@ -28,27 +28,27 @@ export const Route = createFileRoute("/")({
 const PROJECTS = [
   {
     n: "01",
-    title: "Sentinel Node Observer",
-    desc: "Real-time intrusion detection for containerized environments. Kernel-level monitoring with a lightweight anomaly model that flags suspicious syscall patterns.",
-    tags: ["GO", "EBPF", "TENSORFLOW"],
+    title: "UniPulse – University Event Marketing System",
+    desc: "A centralized event marketing platform designed for Sri Lankan universities, enabling students to discover, manage, and engage with university events through a single, user-friendly system. UniPulse streamlines event promotion, registration, and communication, improving event visibility and student participation across campuses.",
+    tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     img: sentinelImg,
     link: "#",
     cta: "VIEW_REPO",
   },
   {
     n: "02",
-    title: "Cryptographic Key Ledger",
-    desc: "A decentralized certificate authority on a private Ethereum fork — simplifies identity verification for zero-trust networks.",
-    tags: ["SOLIDITY", "REACT", "WEB3JS"],
+    title: "Password Strength Analyzer",
+    desc: "Password Strength Analyzer is a simple web project that checks how strong a user’s password is in real time. It evaluates factors like length, uppercase and lowercase letters, numbers, and special characters to give clear feedback. The project helps users understand what makes a secure password and encourages better password habits. It is designed with a clean interface, making it easy and quick to use.",
+    tags: ["Python-Flask", "HTML", "CSS", "JavaScript"],
     img: ledgerImg,
     link: "#",
     cta: "VIEW_DEMO",
   },
   {
     n: "03",
-    title: "Atlas Cloud Auditor",
-    desc: "A CLI that scans AWS accounts for misconfigured IAM policies and exposed buckets, producing a prioritized remediation report.",
-    tags: ["PYTHON", "AWS", "TERRAFORM"],
+    title: "Predicting Gold Prices with Machine Learning",
+    desc: "Created a machine learning application that predicts gold prices using historical market data. Implemented the Random Forest Regressor algorithm in Python to train the model and generate accurate price predictions.",
+    tags: ["PYTHON", "Pandas", "NumPy", "Scikit-learn",],
     img: cloudImg,
     link: "#",
     cta: "VIEW_REPO",
@@ -221,8 +221,8 @@ function Index() {
       <nav className="fixed top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
           <a href="#top" className="flex items-center gap-2 text-sm">
-            <span className="font-semibold text-accent">[SYS]</span>
-            <span className="tracking-tight">PORTFOLIO_V1.0</span>
+            <span className="font-semibold text-accent">Hashini</span>
+            <span className="tracking-tight">Gayathri</span>
           </a>
           <div className="hidden gap-6 text-xs sm:flex">
             <a href="#projects" className="text-dim transition-colors hover:text-accent">PROJECTS</a>
@@ -251,7 +251,7 @@ function Index() {
                 Exploring technology, securing the future, building digital solutions.
               </h1>
               <p className="max-w-[58ch] text-pretty text-base text-dim">
-                Computer Science undergraduate working at the intersection of cybersecurity, cloud infrastructure, and machine learning. I build small, careful systems and document what I learn along the way.
+                Hello! I'm Hashini Gayathri, <br /> <br /> A Computer Science undergraduate passionate about cybersecurity, cloud infrastructure, and machine learning. I enjoy building thoughtful systems and sharing my knowledge. Through continuous learning and hands-on projects, I strive to create secure, scalable, and impactful digital solutions.
               </p>
               <div className="flex flex-wrap items-center gap-2 text-sm text-dim">
                 <span className="font-semibold text-accent">$</span>
@@ -319,7 +319,7 @@ function Index() {
                       <span className="text-[10px] text-dim">{p.n}/03</span>
                       <h3 className="text-lg font-medium">{p.title}</h3>
                     </div>
-                    <p className="mb-6 max-w-[52ch] text-pretty text-sm leading-relaxed text-dim">
+                    <p className="mb-6 max-w-[55ch] text-pretty text-sm leading-relaxed text-dim">
                       {p.desc}
                     </p>
                     <div className="flex flex-wrap items-center gap-2">
@@ -336,7 +336,7 @@ function Index() {
                       </a>
                     </div>
                   </div>
-                  <div className="order-1 w-full shrink-0 md:order-2 md:w-64">
+                  <div className="order-1 w-full shrink-0 md:order-2 md:w-120">
                     <div className="overflow-hidden rounded-lg border border-border bg-surface">
                       <img
                         src={p.img}
@@ -383,12 +383,6 @@ function Index() {
                       <div className="mb-1 flex items-center justify-between text-xs">
                         <span className="text-foreground/90">{i.name}</span>
                         <span className="text-[10px] text-dim">{i.level}%</span>
-                      </div>
-                      <div className="h-1 w-full overflow-hidden rounded-full bg-foreground/5">
-                        <div
-                          className="h-full rounded-full bg-accent"
-                          style={{ width: `${i.level}%` }}
-                        />
                       </div>
                     </li>
                   ))}
