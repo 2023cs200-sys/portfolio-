@@ -77,35 +77,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Cyber Portfolio — CS Undergrad | Security, AI, Cloud & Full-Stack" },
-      {
-        name: "description",
-        content:
-          "Portfolio of a Computer Science undergraduate specializing in cybersecurity, software engineering, cloud computing, AI/ML, and blockchain. Building secure, intelligent digital solutions.",
-      },
-      { name: "author", content: "CS Undergraduate" },
-      { property: "og:title", content: "Cyber Portfolio — CS Undergrad | Security, AI, Cloud & Full-Stack" },
-      {
-        property: "og:description",
-        content:
-          "Futuristic portfolio of a security-minded CS undergraduate exploring AI, cloud, blockchain and full-stack development.",
-      },
+      { title: "Lovable App" },
+      { name: "description", content: "Lovable Generated Project" },
+      { name: "author", content: "Lovable" },
+      { property: "og:title", content: "Lovable App" },
+      { property: "og:description", content: "Lovable Generated Project" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Cyber Portfolio — CS Undergrad | Security, AI, Cloud & Full-Stack" },
-      { name: "description", content: "A futuristic, interactive portfolio showcasing a Computer Science undergraduate's expertise in cybersecurity, AI, cloud, and software development." },
-      { property: "og:description", content: "A futuristic, interactive portfolio showcasing a Computer Science undergraduate's expertise in cybersecurity, AI, cloud, and software development." },
-      { name: "twitter:description", content: "A futuristic, interactive portfolio showcasing a Computer Science undergraduate's expertise in cybersecurity, AI, cloud, and software development." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/19ff7b44-65f5-434f-83b3-71b89be3585b/id-preview-9d356f33--c3ffc6fc-7b6c-4c82-868d-4145ff8e3b51.lovable.app-1781676327149.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/19ff7b44-65f5-434f-83b3-71b89be3585b/id-preview-9d356f33--c3ffc6fc-7b6c-4c82-868d-4145ff8e3b51.lovable.app-1781676327149.png" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
-      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -120,11 +101,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <head suppressHydrationWarning>
+    <html lang="en">
+      <head>
         <HeadContent />
       </head>
-      <body suppressHydrationWarning>
+      <body>
         {children}
         <Scripts />
       </body>
