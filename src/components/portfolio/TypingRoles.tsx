@@ -6,7 +6,6 @@ const ROLES = [
   "machine_learning_explorer",
   "blockchain_curious",
   "full_stack_developer",
-  "future_software_engineer",
 ];
 
 export function TypingRoles() {

@@ -1,20 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { TypingRoles } from "@/components/portfolio/TypingRoles";
-import sentinelImg from "@/assets/project-unipulse.jpg";
-import ledgerImg from "@/assets/Password-Strength-Analyzer.jpg";
-import cloudImg from "@/assets/gold-priceML.jpg";
+import unipulseImg from "@/assets/project-unipulse.jpg";
+import psaImg from "@/assets/Password-Strength-Analyzer.jpg";
+import goldMLImg from "@/assets/gold-priceML.jpg";
+import cafeaiImg from "@/assets/cafeai.jpg";
+import SkySecureImg from "@/assets/skysecure.jpg";
+import ZenCryptoImg from "@/assets/ZenCrypt.jpg";
 import portraitImg from "@/assets/portrait.jpg";
+
+import { link } from "fs";
+import { Link2 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Portfolio — CS Undergraduate · Security, Cloud & ML" },
+      { title: "Hashini Gayathri — CS Undergraduate · Security, Cloud & ML" },
       {
         name: "description",
         content:
           "Computer Science undergraduate exploring cybersecurity, software engineering, cloud computing, machine learning and blockchain. Selected projects and current focus.",
       },
-      { property: "og:title", content: "Portfolio — CS Undergraduate" },
+      { property: "og:title", content: "Hashini Gayathri — CS Undergraduate" },
       {
         property: "og:description",
         content:
@@ -31,27 +37,67 @@ const PROJECTS = [
     title: "UniPulse – University Event Marketing System",
     desc: "A centralized event marketing platform designed for Sri Lankan universities, enabling students to discover, manage, and engage with university events through a single, user-friendly system. UniPulse streamlines event promotion, registration, and communication, improving event visibility and student participation across campuses.",
     tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-    img: sentinelImg,
-    link: "#",
-    cta: "VIEW_REPO",
+    img: unipulseImg,
+    link1: "https://github.com/Manush-hub/UniPulse.git",
+    link2: "#",
+    cta1: "→ VIEW_REPO",
+    cta2: "→ VIEW_DEMO",
+
   },
   {
     n: "02",
     title: "Password Strength Analyzer",
     desc: "Password Strength Analyzer is a simple web project that checks how strong a user’s password is in real time. It evaluates factors like length, uppercase and lowercase letters, numbers, and special characters to give clear feedback. The project helps users understand what makes a secure password and encourages better password habits. It is designed with a clean interface, making it easy and quick to use.",
     tags: ["Python-Flask", "HTML", "CSS", "JavaScript"],
-    img: ledgerImg,
-    link: "#",
-    cta: "VIEW_DEMO",
+    img: psaImg,
+    link1: "https://github.com/2023cs200-sys/passwordStrengthAnalyzer.git",
+    link2: "https://password-strength-analyzer-three.vercel.app/",
+    cta1: "→ VIEW_REPO",
+    cta2: "→ VIEW_DEMO",
   },
   {
     n: "03",
     title: "Predicting Gold Prices with Machine Learning",
     desc: "Created a machine learning application that predicts gold prices using historical market data. Implemented the Random Forest Regressor algorithm in Python to train the model and generate accurate price predictions.",
     tags: ["PYTHON", "Pandas", "NumPy", "Scikit-learn",],
-    img: cloudImg,
-    link: "#",
-    cta: "VIEW_REPO",
+    img: goldMLImg,
+    link1: "https://github.com/2023cs200-sys/gold_pricePridictionWith_ML.git",
+    link2: "https://gold-price-predictor.netlify.app/",
+    cta1: "→ VIEW_REPO",
+    cta2: "→ VIEW_DOCUMENTATION",
+  },
+  {
+    n: "04",
+    title: "Cafe` Brew - AI-Powered Coffee Shop Assistant",
+    desc: "Developed an AI-powered chatbot application that provides intelligent and real-time responses to user queries. Integrated natural language processing capabilities to enhance user interactions and built the system using modern web technologies to deliver a seamless conversational experience.",
+    tags: ["Python-Flask", "HTML", "CSS", "JavaScript"],
+    img: cafeaiImg,
+    link1: "https://github.com/2023cs200-sys/AI-ChatBot.git",
+    link2: "https://cafeai-nu.vercel.app/",
+    cta1: "→ VIEW_REPO",
+    cta2: "→ VIEW_DEMO",
+  },
+  {
+    n: "05",
+    title: "SkySecure – Cloud-Based Website Security Scanner",
+    desc: "CloudSentinel is a cloud-based web application that helps users evaluate the security and trustworthiness of websites through automated scanning and risk analysis. By examining factors such as SSL certificates, phishing indicators, and suspicious patterns, the platform provides a clear security score and easy-to-understand insights. Built with React, Flask, and MongoDB Atlas, the project showcases full-stack development, cloud integration, and practical cybersecurity concepts while delivering a modern and user-friendly experience.",
+    tags: ["Python-Flask", "ReactJs", "CSS", "HTML","JavaScript"],
+    img: SkySecureImg,
+    link1: "https://github.com/samithna25/security-scanner.git",
+    link2: "https://security-scanner-pearl.vercel.app/",
+    cta1: "→ VIEW_REPO",
+    cta2: "→ VIEW_DEMO",
+  },
+  {
+    n: "06",
+    title: "ZenCrypt – Peace of mind, encrypted",
+    desc: "ZenCrypt is a secure messaging tool that enables users to encrypt and decrypt text using Base64 encoding. Built with a modern dark-themed UI, it features real-time encryption, clipboard copying, and password-protected access. The application demonstrates my ability to build full-stack web applications with seamless frontend-backend integration.",
+    tags: ["Python-Flask", "CSS", "HTML","JavaScript"],
+    img: ZenCryptoImg,
+    link1: "https://github.com/2023cs200-sys/msg_encrypt_decrypt.git",
+    link2: "https://zencrypt.vercel.app/",
+    cta1: "→ VIEW_REPO",
+    cta2: "→ VIEW_DEMO",
   },
 ];
 
@@ -194,20 +240,20 @@ const CERTS = [
 const CONTACTS = [
   {
     label: "EMAIL",
-    handle: "hello@portfolio.sys",
-    href: "mailto:hello@portfolio.sys",
+    handle: "hashinigayathrisuraweera",
+    href: "mailto:hashinigayathrisuraweera@gmail.com",
     cmd: "$ mail --compose",
   },
   {
     label: "GITHUB",
-    handle: "github.com/username",
-    href: "#",
+    handle: "github.com/H.G.Suraweera",
+    href: "https://github.com/2023cs200-sys",
     cmd: "$ git remote -v",
   },
   {
     label: "LINKEDIN",
-    handle: "linkedin.com/in/username",
-    href: "#",
+    handle: "linkedin/H.G.Suraweera",
+    href: "https://www.linkedin.com/in/hashini-gayathri-suraweera-880baa3a9/",
     cmd: "$ curl --connect",
   },
 ];
@@ -281,7 +327,7 @@ function Index() {
             <div className="relative mx-auto w-full max-w-[280px] animate-fade-up">
               <div className="absolute -inset-2 rounded-xl border border-accent/20" aria-hidden />
               <div className="absolute -top-3 left-3 z-10 rounded bg-background px-2 text-[10px] text-accent">
-                ./user.img
+                $ hashini gaythri
               </div>
               <div className="relative overflow-hidden rounded-xl border border-border bg-surface">
                 <img
@@ -293,7 +339,6 @@ function Index() {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                 <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[9px] text-accent/80">
-                  <span>SIG: 0xA1F3</span>
                   <span className="flex items-center gap-1">
                     <span className="size-1.5 rounded-full bg-accent" style={{ animation: "pulse-dot 1.6s ease-in-out infinite" }} />
                     LIVE
@@ -328,13 +373,21 @@ function Index() {
                           {t}
                         </span>
                       ))}
-                      <a
-                        href={p.link}
-                        className="ml-auto text-[10px] font-semibold text-accent transition-colors hover:text-foreground"
-                      >
-                        → {p.cta}
-                      </a>
                     </div>
+                    <br />
+                    <a 
+                    href={p.link1}
+                    className="ml-auto text-[10px] font-semibold text-accent transition-colors hover:text-foreground"
+                  >
+                    {p.cta1}
+                  </a>
+
+                  <a
+                    href={p.link2}
+                    className="ml-15 text-[10px] font-semibold text-accent transition-colors hover:text-foreground"
+                  >
+                    {p.cta2}
+                  </a>
                   </div>
                   <div className="order-1 w-full shrink-0 md:order-2 md:w-120">
                     <div className="overflow-hidden rounded-lg border border-border bg-surface">
