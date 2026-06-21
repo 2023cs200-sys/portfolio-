@@ -9,7 +9,8 @@ import ZenCryptoImg from "@/assets/ZenCrypt.jpg";
 import portraitImg from "@/assets/portrait.jpg";
 
 import { link } from "fs";
-import { Mail, Linkedin, Github, ExternalLink, FileText } from "lucide-react";
+import { Mail, Linkedin, Github, ExternalLink, FileText, Menu } from "lucide-react";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -62,7 +63,7 @@ const PROJECTS = [
   {
     n: "02",
     title: "Password Strength Analyzer",
-    desc: "Password Strength Analyzer is a simple web project that checks how strong a user’s password is in real time. It evaluates factors like length, uppercase and lowercase letters, numbers, and special characters to give clear feedback. The project helps users understand what makes a secure password and encourages better password habits. It is designed with a clean interface, making it easy and quick to use.",
+    desc: "Password Strength Analyzer is a simple web project that checks how strong a user's password is in real time. It evaluates factors like length, uppercase and lowercase letters, numbers, and special characters to give clear feedback. The project helps users understand what makes a secure password and encourages better password habits. It is designed with a clean interface, making it easy and quick to use.",
     tags: ["Python-Flask", "HTML", "CSS", "JavaScript"],
     img: psaImg,
     link1: "https://github.com/2023cs200-sys/passwordStrengthAnalyzer.git",
@@ -301,6 +302,25 @@ function Index() {
             <a href="#certs" className="text-dim transition-colors hover:text-accent">CERTS</a>
             <a href="#contact" className="text-dim transition-colors hover:text-accent">CONTACT</a>
           </div>
+          <Drawer>
+            <DrawerTrigger className="sm:hidden">
+              <Menu className="size-5 text-foreground" />
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle className="text-left text-xs font-semibold uppercase tracking-widest text-accent">Navigation</DrawerTitle>
+              </DrawerHeader>
+              <div className="grid gap-1 p-4">
+                <a href="#academic" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">ACADEMIC</a>
+                <a href="#projects" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">PROJECTS</a>
+                <a href="#stack" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">STACK</a>
+                <a href="#journey" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">JOURNEY</a>
+                <a href="#posts" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">POSTS</a>
+                <a href="#certs" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">CERTS</a>
+                <a href="#contact" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">CONTACT</a>
+              </div>
+            </DrawerContent>
+          </Drawer>
         </div>
       </nav>
 
@@ -511,46 +531,9 @@ function Index() {
           </div>
         </section>
 
-        {/* Educational Posts */}
-        <section id="posts" className="mx-auto mb-32 max-w-6xl px-6">
-          <SectionHeader label="04. Knowledge Share" right="LINKEDIN" />
-          <div className="mb-10 max-w-[58ch]">
-            <h3 className="text-2xl font-medium leading-tight">
-              Educational content & insights
-            </h3>
-            <p className="mt-2 text-sm text-dim">
-              Sharing cybersecurity and tech knowledge through LinkedIn articles.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {POSTS.map((post) => (
-              <a
-                key={post.code}
-                href={post.href}
-                className="group flex items-center gap-4 rounded-xl border border-border bg-surface/40 p-4 transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:bg-surface/70"
-              >
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/5 text-accent">
-                  <Linkedin className="size-5" strokeWidth={1.5} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="mb-1 text-[9px] font-semibold tracking-widest text-accent">
-                    [{post.code}]
-                  </div>
-                  <h4 className="text-sm font-medium leading-snug text-foreground transition-colors group-hover:text-accent">
-                    {post.title}
-                  </h4>
-                  <span className="mt-1 block text-[9px] tracking-widest text-dim">
-                    {post.platform}
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-
         {/* Journey */}
         <section id="journey" className="mx-auto mb-32 max-w-6xl px-6">
-          <SectionHeader label="05. Learning Journey" right="LOG_STREAM" />
+          <SectionHeader label="04. Learning Journey" right="LOG_STREAM" />
           <div className="mb-10 max-w-[58ch]">
             <h3 className="text-2xl font-medium leading-tight">
               Where I am, and where I'm headed
@@ -604,6 +587,43 @@ function Index() {
           </div>
         </section>
 
+        {/* Educational Posts */}
+        <section id="posts" className="mx-auto mb-32 max-w-6xl px-6">
+          <SectionHeader label="05. Knowledge Share" right="LINKEDIN" />
+          <div className="mb-10 max-w-[58ch]">
+            <h3 className="text-2xl font-medium leading-tight">
+              Educational content & insights
+            </h3>
+            <p className="mt-2 text-sm text-dim">
+              Sharing cybersecurity and tech knowledge through LinkedIn articles.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {POSTS.map((post) => (
+              <a
+                key={post.code}
+                href={post.href}
+                className="group flex items-center gap-4 rounded-xl border border-border bg-surface/40 p-4 transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:bg-surface/70"
+              >
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/5 text-accent">
+                  <Linkedin className="size-5" strokeWidth={1.5} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 text-[9px] font-semibold tracking-widest text-accent">
+                    [{post.code}]
+                  </div>
+                  <h4 className="text-sm font-medium leading-snug text-foreground transition-colors group-hover:text-accent">
+                    {post.title}
+                  </h4>
+                  <span className="mt-1 block text-[9px] tracking-widest text-dim">
+                    {post.platform}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
         {/* Certifications */}
         <section id="certs" className="mx-auto mb-32 max-w-6xl px-6">
           <SectionHeader label="06. Certifications & Badges" right="VERIFIED" />
@@ -640,7 +660,7 @@ function Index() {
                   <div className="flex items-start gap-4">
                     <div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/5 text-accent">
                       <svg className="size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.745 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
                       </svg>
                     </div>
                     <div className="min-w-0 flex-1">
