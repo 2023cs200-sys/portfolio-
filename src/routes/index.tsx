@@ -256,31 +256,42 @@ const POSTS = [
 const CERTS = [
   {
     code: "CERT_01",
-    name: "CS50: Introduction to Computer Science",
-    issuer: "HarvardX",
+    name: "(ISC)²: Certified in Cybersecurity (CC)",
+    issuer: "(ISC)²",
     status: "EARNED",
-    description: "Harvard's flagship computer science course covering algorithms, data structures, software engineering, and web development using C, Python, SQL, and JavaScript.",
+    description: "Completed the (ISC)² Certified in Cybersecurity (CC) program, covering security principles, network security, access control, incident response, business continuity, disaster recovery, and security operations. Developed a strong foundation in cybersecurity concepts and best practices.",
   },
   {
-    code: "CERT_02",
-    name: "Google Cybersecurity Professional Certificate",
-    issuer: "Google / Coursera",
-    status: "IN_PROGRESS",
-    description: "Comprehensive program covering security operations, SIEM tools, Linux, SQL, Python for security, and incident response to prepare for entry-level cybersecurity roles.",
+  code: "CERT_02",
+  name: "Fundamentals of Blockchain and Bitcoin",
+  issuer: "Alison",
+  status: "COMPLETED",
+  description:
+    "Completed the Fundamentals of Blockchain and Bitcoin course, gaining knowledge of blockchain technology, cryptocurrencies, decentralized systems, cryptographic hashing, consensus mechanisms, mining, and blockchain security. Strengthened my understanding of secure digital transactions and distributed networks.",
   },
   {
-    code: "CERT_03",
-    name: "AWS Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    status: "QUEUED",
-    description: "Foundational certification validating cloud fluency and understanding of AWS cloud services, security, architecture, pricing, and support models.",
+  code: "CERT_03",
+  name: "AI in Cybersecurity: Vulnerability, Intelligence, Security, and Ethics",
+  issuer: "Alison",
+  status: "COMPLETED",
+  description:
+    "Completed a course on AI in Cybersecurity, exploring the role of artificial intelligence in threat detection, security monitoring, and cyber defense. Gained knowledge of cybersecurity vulnerabilities, threat intelligence, security practices, and the ethical considerations of AI-driven security systems.",
   },
   {
-    code: "CERT_04",
-    name: "Network Security Fundamentals",
-    issuer: "Cisco Networking Academy",
-    status: "EARNED",
-    description: "Covers core network security concepts including cryptography, firewalls, VPNs, intrusion detection, and secure network design principles.",
+  code: "CERT_04",
+  name: "Machine Learning Using Python",
+  issuer: "Simplilearn",
+  status: "COMPLETED",
+  description:
+    "Completed a course on Machine Learning using Python, learning data preprocessing, supervised and unsupervised learning, model building, and evaluation techniques. Gained practical experience in applying machine learning concepts to real-world problems.",
+  },
+  {
+  code: "CERT_05",
+  name: "Microsoft : Introduction to Cloud Infrastructure",
+  issuer: "Microsoft Learn",
+  status: "IN_PROGRESS",
+  description:
+    "Completed the Describe Cloud Concepts learning path, covering cloud computing fundamentals, cloud service types, and the benefits of cloud services. Earned three badges and a trophy while building a strong foundation in cloud infrastructure and Microsoft Azure concepts.",
   },
 ];
 
