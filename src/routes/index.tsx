@@ -245,6 +245,13 @@ const JOURNEY = [
   },
 ];
 
+const POSTS = [
+  { code: "POST_01", title: "What is an APK?", platform: "LINKEDIN_ARTICLE", href: "#" },
+  { code: "POST_02", title: "Understanding Trojan Threats", platform: "LINKEDIN_ARTICLE", href: "#" },
+  { code: "POST_03", title: "Introduction to Cybersecurity", platform: "LINKEDIN_ARTICLE", href: "#" },
+  { code: "POST_04", title: "Cloud Security Basics", platform: "LINKEDIN_ARTICLE", href: "#" },
+];
+
 const CERTS = [
   { code: "CERT_01", name: "CS50: Introduction to Computer Science", issuer: "HarvardX", status: "EARNED" },
   { code: "CERT_02", name: "Google Cybersecurity Professional Certificate", issuer: "Google / Coursera", status: "IN_PROGRESS" },
@@ -290,6 +297,7 @@ function Index() {
             <a href="#projects" className="text-dim transition-colors hover:text-accent">PROJECTS</a>
             <a href="#stack" className="text-dim transition-colors hover:text-accent">STACK</a>
             <a href="#journey" className="text-dim transition-colors hover:text-accent">JOURNEY</a>
+            <a href="#posts" className="text-dim transition-colors hover:text-accent">POSTS</a>
             <a href="#certs" className="text-dim transition-colors hover:text-accent">CERTS</a>
             <a href="#contact" className="text-dim transition-colors hover:text-accent">CONTACT</a>
           </div>
@@ -556,6 +564,43 @@ function Index() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* Educational Posts */}
+        <section id="posts" className="mx-auto mb-32 max-w-6xl px-6">
+          <SectionHeader label="04. Knowledge Share" right="LINKEDIN" />
+          <div className="mb-10 max-w-[58ch]">
+            <h3 className="text-2xl font-medium leading-tight">
+              Educational content & insights
+            </h3>
+            <p className="mt-2 text-sm text-dim">
+              Sharing cybersecurity and tech knowledge through LinkedIn articles.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {POSTS.map((post) => (
+              <a
+                key={post.code}
+                href={post.href}
+                className="group relative flex items-center gap-4 rounded-xl border border-border bg-surface/40 p-4 transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:bg-surface/70"
+              >
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/5 text-accent">
+                  <Linkedin className="size-5" strokeWidth={1.5} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 text-[9px] font-semibold tracking-widest text-accent">
+                    [{post.code}]
+                  </div>
+                  <h4 className="mb-1.5 truncate text-sm font-medium text-foreground transition-colors group-hover:text-accent">
+                    {post.title}
+                  </h4>
+                  <span className="text-[9px] tracking-widest text-dim">
+                    {post.platform}
+                  </span>
+                </div>
+              </a>
+            ))}
           </div>
         </section>
 
