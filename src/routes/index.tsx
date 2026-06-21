@@ -511,9 +511,46 @@ function Index() {
           </div>
         </section>
 
+        {/* Educational Posts */}
+        <section id="posts" className="mx-auto mb-32 max-w-6xl px-6">
+          <SectionHeader label="04. Knowledge Share" right="LINKEDIN" />
+          <div className="mb-10 max-w-[58ch]">
+            <h3 className="text-2xl font-medium leading-tight">
+              Educational content & insights
+            </h3>
+            <p className="mt-2 text-sm text-dim">
+              Sharing cybersecurity and tech knowledge through LinkedIn articles.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {POSTS.map((post) => (
+              <a
+                key={post.code}
+                href={post.href}
+                className="group flex items-center gap-4 rounded-xl border border-border bg-surface/40 p-4 transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:bg-surface/70"
+              >
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/5 text-accent">
+                  <Linkedin className="size-5" strokeWidth={1.5} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 text-[9px] font-semibold tracking-widest text-accent">
+                    [{post.code}]
+                  </div>
+                  <h4 className="text-sm font-medium leading-snug text-foreground transition-colors group-hover:text-accent">
+                    {post.title}
+                  </h4>
+                  <span className="mt-1 block text-[9px] tracking-widest text-dim">
+                    {post.platform}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
         {/* Journey */}
         <section id="journey" className="mx-auto mb-32 max-w-6xl px-6">
-          <SectionHeader label="04. Learning Journey" right="LOG_STREAM" />
+          <SectionHeader label="05. Learning Journey" right="LOG_STREAM" />
           <div className="mb-10 max-w-[58ch]">
             <h3 className="text-2xl font-medium leading-tight">
               Where I am, and where I'm headed
@@ -567,46 +604,9 @@ function Index() {
           </div>
         </section>
 
-        {/* Educational Posts */}
-        <section id="posts" className="mx-auto mb-32 max-w-6xl px-6">
-          <SectionHeader label="04. Knowledge Share" right="LINKEDIN" />
-          <div className="mb-10 max-w-[58ch]">
-            <h3 className="text-2xl font-medium leading-tight">
-              Educational content & insights
-            </h3>
-            <p className="mt-2 text-sm text-dim">
-              Sharing cybersecurity and tech knowledge through LinkedIn articles.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {POSTS.map((post) => (
-              <a
-                key={post.code}
-                href={post.href}
-                className="group relative flex items-center gap-4 rounded-xl border border-border bg-surface/40 p-4 transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:bg-surface/70"
-              >
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/5 text-accent">
-                  <Linkedin className="size-5" strokeWidth={1.5} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="mb-1 text-[9px] font-semibold tracking-widest text-accent">
-                    [{post.code}]
-                  </div>
-                  <h4 className="mb-1.5 truncate text-sm font-medium text-foreground transition-colors group-hover:text-accent">
-                    {post.title}
-                  </h4>
-                  <span className="text-[9px] tracking-widest text-dim">
-                    {post.platform}
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-
         {/* Certifications */}
         <section id="certs" className="mx-auto mb-32 max-w-6xl px-6">
-          <SectionHeader label="05. Certifications & Badges" right="VERIFIED" />
+          <SectionHeader label="06. Certifications & Badges" right="VERIFIED" />
           <div className="mb-10 max-w-[58ch]">
             <h3 className="text-2xl font-medium leading-tight">
               Certifications & Badges
@@ -658,7 +658,7 @@ function Index() {
 
         {/* Contact */}
         <section id="contact" className="mx-auto max-w-6xl px-6">
-          <SectionHeader label="06. Open Connection" right="EOF" />
+          <SectionHeader label="07. Open Connection" right="EOF" />
           <p className="mb-10 max-w-[58ch] text-sm text-dim">
             <span className="font-semibold text-accent">$</span> echo "Looking for internship & full-time opportunities in SWE, security and cloud."
           </p>
