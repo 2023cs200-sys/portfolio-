@@ -9,7 +9,7 @@ import ZenCryptoImg from "@/assets/ZenCrypt.jpg";
 import portraitImg from "@/assets/portrait.jpg";
 
 import { link } from "fs";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Linkedin, Github, ExternalLink, FileText } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -426,20 +426,26 @@ function Index() {
                         </span>
                       ))}
                     </div>
-                    <br />
-                    <a 
-                    href={p.link1}
-                    className="ml-auto text-[10px] font-semibold text-accent transition-colors hover:text-foreground"
-                  >
-                    {p.cta1}
-                  </a>
-
-                  <a
-                    href={p.link2}
-                    className="ml-15 text-[10px] font-semibold text-accent transition-colors hover:text-foreground"
-                  >
-                    {p.cta2}
-                  </a>
+                    <div className="mt-4 flex flex-wrap items-center gap-3">
+                      <a
+                        href={p.link1}
+                        className="inline-flex h-8 items-center gap-2 rounded border border-accent/40 bg-accent/5 px-3 text-[10px] font-semibold tracking-widest text-accent transition-colors hover:bg-accent/10 hover:text-accent"
+                      >
+                        <Github className="size-3.5" strokeWidth={1.5} />
+                        {p.cta1.replace("→ ", "")}
+                      </a>
+                      <a
+                        href={p.link2}
+                        className="inline-flex h-8 items-center gap-2 rounded border border-accent/40 bg-accent/5 px-3 text-[10px] font-semibold tracking-widest text-accent transition-colors hover:bg-accent/10 hover:text-accent"
+                      >
+                        {p.cta2.includes("DOCUMENTATION") ? (
+                          <FileText className="size-3.5" strokeWidth={1.5} />
+                        ) : (
+                          <ExternalLink className="size-3.5" strokeWidth={1.5} />
+                        )}
+                        {p.cta2.replace("→ ", "")}
+                      </a>
+                    </div>
                   </div>
                   <div className="order-1 w-full shrink-0 md:order-2 md:w-120">
                     <div className="overflow-hidden rounded-lg border border-border bg-surface">
