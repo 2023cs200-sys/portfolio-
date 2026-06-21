@@ -9,7 +9,7 @@ import ZenCryptoImg from "@/assets/ZenCrypt.jpg";
 import portraitImg from "@/assets/portrait.jpg";
 
 import { link } from "fs";
-import { Mail, Linkedin, Github, ExternalLink, FileText, Menu } from "lucide-react";
+import { Mail, Linkedin, Github, ExternalLink, FileText, Menu, ShieldCheck, Coins, BrainCircuit, Brain, Cloud } from "lucide-react";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 
 export const Route = createFileRoute("/")({
@@ -259,6 +259,7 @@ const CERTS = [
     name: "(ISC)²: Certified in Cybersecurity (CC)",
     issuer: "(ISC)²",
     status: "EARNED",
+    icon: ShieldCheck,
     description: "Completed the (ISC)² Certified in Cybersecurity (CC) program, covering security principles, network security, access control, incident response, business continuity, disaster recovery, and security operations. Developed a strong foundation in cybersecurity concepts and best practices.",
   },
   {
@@ -266,6 +267,7 @@ const CERTS = [
   name: "Fundamentals of Blockchain and Bitcoin",
   issuer: "Alison",
   status: "COMPLETED",
+  icon: Coins,
   description:
     "Completed the Fundamentals of Blockchain and Bitcoin course, gaining knowledge of blockchain technology, cryptocurrencies, decentralized systems, cryptographic hashing, consensus mechanisms, mining, and blockchain security. Strengthened my understanding of secure digital transactions and distributed networks.",
   },
@@ -274,6 +276,7 @@ const CERTS = [
   name: "AI in Cybersecurity: Vulnerability, Intelligence, Security, and Ethics",
   issuer: "Alison",
   status: "COMPLETED",
+  icon: BrainCircuit,
   description:
     "Completed a course on AI in Cybersecurity, exploring the role of artificial intelligence in threat detection, security monitoring, and cyber defense. Gained knowledge of cybersecurity vulnerabilities, threat intelligence, security practices, and the ethical considerations of AI-driven security systems.",
   },
@@ -282,6 +285,7 @@ const CERTS = [
   name: "Machine Learning Using Python",
   issuer: "Simplilearn",
   status: "COMPLETED",
+  icon: Brain,
   description:
     "Completed a course on Machine Learning using Python, learning data preprocessing, supervised and unsupervised learning, model building, and evaluation techniques. Gained practical experience in applying machine learning concepts to real-world problems.",
   },
@@ -290,6 +294,7 @@ const CERTS = [
   name: "Microsoft : Introduction to Cloud Infrastructure",
   issuer: "Microsoft Learn",
   status: "IN_PROGRESS",
+  icon: Cloud,
   description:
     "Completed the Describe Cloud Concepts learning path, covering cloud computing fundamentals, cloud service types, and the benefits of cloud services. Earned three badges and a trophy while building a strong foundation in cloud infrastructure and Microsoft Azure concepts.",
   },
@@ -679,6 +684,7 @@ function Index() {
                 : isInProgress
                   ? "text-warn bg-warn/10 ring-warn/20"
                   : "text-dim bg-foreground/5 ring-border";
+              const Icon = c.icon;
               return (
                 <div
                   key={c.code}
@@ -694,9 +700,7 @@ function Index() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/5 text-accent">
-                      <svg className="size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.745 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-                      </svg>
+                      <Icon className="size-6" strokeWidth={1.5} />
                     </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="text-base font-medium leading-snug">
