@@ -9,7 +9,7 @@ import ZenCryptoImg from "@/assets/ZenCrypt.jpg";
 import portraitImg from "@/assets/portrait.jpg";
 
 import { link } from "fs";
-import { Link2 } from "lucide-react";
+import { Mail, Linkedin, Github } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -612,30 +612,36 @@ function Index() {
             <span className="font-semibold text-accent">$</span> echo "Looking for internship & full-time opportunities in SWE, security and cloud."
           </p>
           <div className="grid gap-4 md:grid-cols-3">
-            {CONTACTS.map((c) => (
-              <a
-                key={c.label}
-                href={c.href}
-                className="group relative overflow-hidden rounded-xl border border-border bg-surface/40 p-6 transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:bg-surface/70"
-              >
-                <div className="mb-6 flex items-center justify-between">
-                  <span className="text-[10px] font-semibold tracking-widest text-accent">
-                    [{c.label}]
-                  </span>
-                  <span className="text-dim transition-colors group-hover:text-accent">
-                    →
-                  </span>
-                </div>
-                <p className="mb-2 text-[10px] text-dim">{c.cmd}</p>
-                <p className="text-base font-medium tracking-tight text-foreground transition-colors group-hover:text-accent">
-                  {c.handle}
-                </p>
-                <div className="mt-6 flex items-center gap-2 text-[10px] text-dim">
-                  <span className="size-1.5 rounded-full bg-accent" style={{ animation: "pulse-dot 1.6s ease-in-out infinite" }} />
-                  CHANNEL_OPEN
-                </div>
-              </a>
-            ))}
+            {CONTACTS.map((c) => {
+              const Icon = c.label === "EMAIL" ? Mail : c.label === "LINKEDIN" ? Linkedin : Github;
+              return (
+                <a
+                  key={c.label}
+                  href={c.href}
+                  className="group relative overflow-hidden rounded-xl border border-border bg-surface/40 p-6 transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:bg-surface/70"
+                >
+                  <div className="mb-6 flex items-center justify-between">
+                    <span className="text-[10px] font-semibold tracking-widest text-accent">
+                      [{c.label}]
+                    </span>
+                    <span className="text-dim transition-colors group-hover:text-accent">
+                      →
+                    </span>
+                  </div>
+                  <div className="mb-4 flex size-12 items-center justify-center rounded-lg border border-accent/30 bg-accent/5 text-accent">
+                    <Icon className="size-6" strokeWidth={1.5} />
+                  </div>
+                  <p className="mb-2 text-[10px] text-dim">{c.cmd}</p>
+                  <p className="text-base font-medium tracking-tight text-foreground transition-colors group-hover:text-accent">
+                    {c.handle}
+                  </p>
+                  <div className="mt-6 flex items-center gap-2 text-[10px] text-dim">
+                    <span className="size-1.5 rounded-full bg-accent" style={{ animation: "pulse-dot 1.6s ease-in-out infinite" }} />
+                    CHANNEL_OPEN
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </section>
       </main>
