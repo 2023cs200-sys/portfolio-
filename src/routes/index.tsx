@@ -112,8 +112,10 @@ const PROJECTS = [
     img: ZenCryptoImg,
     link1: "https://github.com/2023cs200-sys/msg_encrypt_decrypt.git",
     link2: "https://zencrypt.vercel.app/",
+    link3: "https://zencrypt.netlify.app/",
     cta1: "→ VIEW_REPO",
     cta2: "→ VIEW_DEMO",
+    cta3: "→ VIEW_DOCUMENTATION",
   },
 ];
 
@@ -247,10 +249,8 @@ const JOURNEY = [
 ];
 
 const POSTS = [
-  { code: "POST_01", title: "What is an APK?", platform: "LINKEDIN_ARTICLE", href: "#" },
-  { code: "POST_02", title: "Understanding Trojan Threats", platform: "LINKEDIN_ARTICLE", href: "#" },
-  { code: "POST_03", title: "Introduction to Cybersecurity", platform: "LINKEDIN_ARTICLE", href: "#" },
-  { code: "POST_04", title: "Cloud Security Basics", platform: "LINKEDIN_ARTICLE", href: "#" },
+  { code: "POST_01", title: "APK Security: How to Stay Safe on Android", platform: "LINKEDIN_ARTICLE", href: "https://www.linkedin.com/posts/hashini-gayathri-suraweera-880baa3a9_cybersecurity-cyberawareness-androidsecurity-activity-7470178338146275329-d0no?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAGQFxmABFK7OQjpfJOe4yq-Ff0I6J1QkHz8" },
+  { code: "POST_02", title: "Responding to a Trojan Malware Incident", platform: "LINKEDIN_ARTICLE", href: "https://www.linkedin.com/posts/hashini-gayathri-suraweera-880baa3a9_recently-i-experienced-a-real-cybersecurity-activity-7465736593664835584-KbJS?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAGQFxmABFK7OQjpfJOe4yq-Ff0I6J1QkHz8" },
 ];
 
 const CERTS = [
@@ -513,6 +513,19 @@ function Index() {
                         )}
                         {p.cta2.replace("→ ", "")}
                       </a>
+                      {p.link3 && p.cta3 && (
+                        <a
+                          href={p.link3}
+                          className="inline-flex h-8 items-center gap-2 rounded border border-accent/40 bg-accent/5 px-3 text-[10px] font-semibold tracking-widest text-accent transition-colors hover:bg-accent/10 hover:text-accent"
+                        >
+                          {p.cta3.includes("DOCUMENTATION") ? (
+                            <FileText className="size-3.5" strokeWidth={1.5} />
+                          ) : (
+                            <ExternalLink className="size-3.5" strokeWidth={1.5} />
+                          )}
+                          {p.cta3.replace("→ ", "")}
+                        </a>
+                      )}
                     </div>
                   </div>
                   <div className="order-1 w-full shrink-0 md:order-2 md:w-120">
@@ -629,7 +642,7 @@ function Index() {
 
         {/* Educational Posts */}
         <section id="posts" className="mx-auto mb-32 max-w-6xl px-6">
-          <SectionHeader label="05. Knowledge Share" right="LINKEDIN" />
+          <SectionHeader label="05. Knowledge Share" right="LINKEDIN_POSTS" />
           <div className="mb-10 max-w-[58ch]">
             <h3 className="text-2xl font-medium leading-tight">
               Educational content & insights
