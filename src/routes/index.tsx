@@ -265,7 +265,7 @@ function Index() {
 
       {/* Nav */}
       <nav className="fixed top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
           <a href="#top" className="flex items-center gap-2 text-sm">
             <span className="font-semibold text-accent">Hashini</span>
             <span className="tracking-tight">Gayathri</span>
@@ -282,7 +282,7 @@ function Index() {
 
       <main id="top" className="relative z-10 pt-32 pb-24">
         {/* Hero */}
-        <section className="relative mx-auto mb-32 max-w-5xl px-6">
+        <section className="relative mx-auto mb-32 max-w-6xl px-6">
           <div className="grid-bg pointer-events-none absolute inset-0 -z-10" aria-hidden />
           <div className="grid items-center gap-12 md:grid-cols-[1fr_280px]">
             <div className="animate-fade-up space-y-6">
@@ -296,7 +296,7 @@ function Index() {
               <h1 className="max-w-[28ch] text-balance text-4xl font-medium leading-tight tracking-tight md:text-5xl">
                 Exploring technology, securing the future, building digital solutions.
               </h1>
-              <p className="max-w-[58ch] text-pretty text-base text-dim">
+              <p className="max-w-[70ch] text-pretty text-base text-dim">
                 Hello! I'm Hashini Gayathri, <br /> <br /> A Computer Science undergraduate passionate about cybersecurity, cloud infrastructure, and machine learning. I enjoy building thoughtful systems and sharing my knowledge. Through continuous learning and hands-on projects, I strive to create secure, scalable, and impactful digital solutions.
               </p>
               <div className="flex flex-wrap items-center gap-2 text-sm text-dim">
@@ -350,7 +350,7 @@ function Index() {
         </section>
 
         {/* Projects */}
-        <section id="projects" className="mx-auto mb-32 max-w-5xl px-6">
+        <section id="projects" className="mx-auto mb-32 max-w-6xl px-6">
           <SectionHeader label="01. Featured Projects" right="03 / 03" />
           <div className="grid gap-6">
             {PROJECTS.map((p) => (
@@ -364,7 +364,7 @@ function Index() {
                       <span className="text-[10px] text-dim">{p.n}/03</span>
                       <h3 className="text-lg font-medium">{p.title}</h3>
                     </div>
-                    <p className="mb-6 max-w-[55ch] text-pretty text-sm leading-relaxed text-dim">
+                    <p className="mb-6 max-w-[60ch] text-pretty text-sm leading-relaxed text-dim">
                       {p.desc}
                     </p>
                     <div className="flex flex-wrap items-center gap-2">
@@ -408,7 +408,7 @@ function Index() {
         </section>
 
         {/* Stack — Skill Cards */}
-        <section id="stack" className="mx-auto mb-32 max-w-5xl px-6">
+        <section id="stack" className="mx-auto mb-32 max-w-6xl px-6">
           <SectionHeader label="02. Tech Status" right="UPTIME 100%" />
           <div className="mb-10 max-w-[58ch]">
             <h3 className="text-2xl font-medium leading-tight">
@@ -446,7 +446,7 @@ function Index() {
         </section>
 
         {/* Journey */}
-        <section id="journey" className="mx-auto mb-32 max-w-5xl px-6">
+        <section id="journey" className="mx-auto mb-32 max-w-6xl px-6">
           <SectionHeader label="03. Learning Journey" right="LOG_STREAM" />
           <div className="mb-10 max-w-[58ch]">
             <h3 className="text-2xl font-medium leading-tight">
@@ -502,7 +502,7 @@ function Index() {
         </section>
 
         {/* Certifications */}
-        <section id="certs" className="mx-auto mb-32 max-w-5xl px-6">
+        <section id="certs" className="mx-auto mb-32 max-w-6xl px-6">
           <SectionHeader label="04. Certifications & Badges" right="VERIFIED" />
           <div className="mb-10 max-w-[58ch]">
             <h3 className="text-2xl font-medium leading-tight">
@@ -554,7 +554,7 @@ function Index() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="mx-auto max-w-5xl px-6">
+        <section id="contact" className="mx-auto max-w-6xl px-6">
           <SectionHeader label="05. Open Connection" right="EOF" />
           <p className="mb-10 max-w-[58ch] text-sm text-dim">
             <span className="font-semibold text-accent">$</span> echo "Looking for internship & full-time opportunities in SWE, security and cloud."
@@ -589,7 +589,7 @@ function Index() {
       </main>
 
       <footer className="relative z-10 border-t border-border">
-        <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-4 px-6 py-10 md:flex-row md:items-center">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 py-10 md:flex-row md:items-center">
           <div className="text-xs font-semibold text-accent">EST_CONNECTION: OK</div>
           <p className="text-[10px] text-dim">
             BUILD_REV: 1.0.0 · LATENCY 14MS · © {new Date().getFullYear()}
