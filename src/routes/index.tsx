@@ -6,6 +6,7 @@ import goldMLImg from "@/assets/gold-priceML.jpg";
 import cafeaiImg from "@/assets/cafeai.jpg";
 import SkySecureImg from "@/assets/skysecure.jpg";
 import ZenCryptoImg from "@/assets/ZenCrypt.jpg";
+import LudoImg from "@/assets/ludo-game.jpg";
 import portraitImg from "@/assets/portrait.jpg";
 
 import { link } from "fs";
@@ -118,6 +119,17 @@ const PROJECTS = [
     cta1: "→ VIEW_REPO",
     cta2: "→ VIEW_DEMO",
     cta3: "→ VIEW_DOCUMENTATION",
+  },
+  {
+    n: "07",
+    title: "LUDO Board Game using C language",
+    desc: "A fully playable console-based LUDO game written in C featuring 4 AI players (Red, Green, Yellow, Blue), each controlling 4 pieces around a 52-position board. Implements core game mechanics including dice rolling, piece movement, capturing opponent pieces, and special mystery cells that randomly teleport pieces to predefined locations. The game automatically determines turn order, grants extra turns on rolling a 6, and displays a celebration animation when a player wins.Built with modular C programming using custom data structures (struct player) and a clean separation of concerns across ludo.c (game loop), gamelogic.c (mechanics), and types.c (definitions). All operations run in O(1) time due to the fixed number of players and pieces.",
+    tags: ["C Language", "Algorithm Design"],
+    img: LudoImg,
+    link1: "https://github.com/2023cs200-sys/LUDOgame.git",
+    link2: "https://ludogamedocumentation.netlify.app/",
+    cta1: "→ VIEW_REPO",
+    cta2: "→ VIEW_DOCUMENTATION",
   },
 ];
 
