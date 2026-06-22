@@ -101,8 +101,10 @@ const PROJECTS = [
     img: SkySecureImg,
     link1: "https://github.com/samithna25/security-scanner.git",
     link2: "https://security-scanner-pearl.vercel.app/",
+    link3: "https://skysecure.netlify.app/",
     cta1: "→ VIEW_REPO",
     cta2: "→ VIEW_DEMO",
+    cta3: "→ VIEW_DOCUMENTATION",
   },
   {
     n: "06",
@@ -411,7 +413,7 @@ function Index() {
             <div className="relative mx-auto w-full max-w-[280px] animate-fade-up">
               <div className="absolute -inset-2 rounded-xl border border-accent/20" aria-hidden />
               <div className="absolute -top-3 left-3 z-10 rounded bg-background px-2 text-[10px] text-accent">
-                $ hashini gaythri
+                $whoami:Final Year CS Undergraduate @ UCSC
               </div>
               <div className="relative overflow-hidden rounded-xl border border-border bg-surface">
                 <img
@@ -471,7 +473,7 @@ function Index() {
 
         {/* Projects */}
         <section id="projects" className="mx-auto mb-32 max-w-6xl px-6">
-          <SectionHeader label="02. Featured Projects" right="03 / 03" />
+          <SectionHeader label="02. Featured Projects" right="Projects" />
           <div className="grid gap-6">
             {PROJECTS.map((p) => (
               <article
