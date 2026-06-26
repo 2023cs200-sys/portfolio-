@@ -7,10 +7,12 @@ import cafeaiImg from "@/assets/cafeai.jpg";
 import SkySecureImg from "@/assets/skysecure.jpg";
 import ZenCryptoImg from "@/assets/ZenCrypt.jpg";
 import LudoImg from "@/assets/ludo-game.jpg";
+import IPLMLImg from "@/assets/IPL_ML.jpg";
 import portraitImg from "@/assets/portrait.jpg";
 
 import { link } from "fs";
-import { Mail, Linkedin, Github, ExternalLink, FileText, Menu, ShieldCheck, Coins, BrainCircuit, Brain, Cloud } from "lucide-react";
+
+import { Mail, Linkedin, Github, ExternalLink, FileText, Menu, ShieldCheck, Coins, BrainCircuit, Brain, Cloud, Container} from "lucide-react";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 
 export const Route = createFileRoute("/")({
@@ -65,7 +67,7 @@ const PROJECTS = [
     n: "02",
     title: "Password Strength Analyzer",
     desc: "Password Strength Analyzer is a simple web project that checks how strong a user's password is in real time. It evaluates factors like length, uppercase and lowercase letters, numbers, and special characters to give clear feedback. The project helps users understand what makes a secure password and encourages better password habits. It is designed with a clean interface, making it easy and quick to use.",
-    tags: ["Python-Flask", "HTML", "CSS", "JavaScript"],
+    tags: ["Python-Flask", "HTML", "CSS", "JavaScript","Vercel"],
     img: psaImg,
     link1: "https://github.com/2023cs200-sys/passwordStrengthAnalyzer.git",
     link2: "https://password-strength-analyzer-three.vercel.app/",
@@ -87,7 +89,7 @@ const PROJECTS = [
     n: "04",
     title: "Cafe` Brew - AI-Powered Coffee Shop Assistant",
     desc: "Developed an AI-powered chatbot application that provides intelligent and real-time responses to user queries. Integrated natural language processing capabilities to enhance user interactions and built the system using modern web technologies to deliver a seamless conversational experience.",
-    tags: ["Python-Flask", "HTML", "CSS", "JavaScript"],
+    tags: ["Python-Flask", "HTML", "CSS", "JavaScript","Vercel"],
     img: cafeaiImg,
     link1: "https://github.com/2023cs200-sys/AI-ChatBot.git",
     link2: "https://cafeai-nu.vercel.app/",
@@ -98,7 +100,7 @@ const PROJECTS = [
     n: "05",
     title: "SkySecure – Cloud-Based Website Security Scanner",
     desc: "CloudSentinel is a cloud-based web application that helps users evaluate the security and trustworthiness of websites through automated scanning and risk analysis. By examining factors such as SSL certificates, phishing indicators, and suspicious patterns, the platform provides a clear security score and easy-to-understand insights. Built with React, Flask, and MongoDB Atlas, the project showcases full-stack development, cloud integration, and practical cybersecurity concepts while delivering a modern and user-friendly experience.",
-    tags: ["Python-Flask", "ReactJs", "CSS", "HTML","JavaScript"],
+    tags: ["Python-Flask", "ReactJs", "CSS", "HTML","JavaScript","Vercel"],
     img: SkySecureImg,
     link1: "https://github.com/samithna25/security-scanner.git",
     link2: "https://security-scanner-pearl.vercel.app/",
@@ -111,7 +113,7 @@ const PROJECTS = [
     n: "06",
     title: "ZenCrypt – Peace of mind, encrypted",
     desc: "ZenCrypt is a secure messaging tool that enables users to encrypt and decrypt text using Base64 encoding. Built with a modern dark-themed UI, it features real-time encryption, clipboard copying, and password-protected access. The application demonstrates my ability to build full-stack web applications with seamless frontend-backend integration.",
-    tags: ["Python-Flask", "CSS", "HTML","JavaScript"],
+    tags: ["Python-Flask", "CSS", "HTML","JavaScript","Vercel"],
     img: ZenCryptoImg,
     link1: "https://github.com/2023cs200-sys/msg_encrypt_decrypt.git",
     link2: "https://zencrypt.vercel.app/",
@@ -130,6 +132,17 @@ const PROJECTS = [
     link2: "https://ludogamedocumentation.netlify.app/",
     cta1: "→ VIEW_REPO",
     cta2: "→ VIEW_DOCUMENTATION",
+  },
+  {
+    n: "08",
+    title: "IPL Cricket Score Predictor | End-to-End Machine Learning Application",
+    desc: "Built a full-stack machine learning web application that predicts the final score of an IPL first innings using a Random Forest Regressor. Developed a FastAPI backend to serve predictions through a REST API and a React + Vite frontend with a modern, responsive interface. Containerized the application using Docker and Docker Compose, implemented GitHub Actions for CI/CD automation, and deployed the backend on Render and the frontend on Vercel.",
+    tags: ["Python", "FastAPI", "React", "Vite","Docker","GitHub Actions","Render","Vercel"],
+    img: IPLMLImg,
+    link1: "https://github.com/2023cs200-sys/IPL_Cricket_Score_Predictor_ML.git",
+    link2: "https://ipl-cricket-score-predictor-ml.vercel.app/",
+    cta1: "→ VIEW_REPO",
+    cta2: "→ VIEW_DEMO",
   },
 ];
 
@@ -215,6 +228,7 @@ const SKILL_CARDS: SkillCard[] = [
       { name: "Git & GitHub", level: 90 },
       { name: "Linux", level: 80 },
       { name: "VS Code", level: 92 },
+      { name: "Docker", level: 85 },
     ],
   },
 ];
@@ -312,6 +326,15 @@ const CERTS = [
   description:
     "Completed the Describe Cloud Concepts learning path, covering cloud computing fundamentals, cloud service types, and the benefits of cloud services. Earned three badges and a trophy while building a strong foundation in cloud infrastructure and Microsoft Azure concepts.",
   },
+  {
+    code: "CERT_06",
+    name: "Getting Started with Docker",
+    issuer: "Simplilearn",
+    status: "COMPLETED",
+    icon: Container,
+    description:
+      "Completed a course on Docker, learning containerization concepts, image creation, container management, and deployment workflows. Gained practical knowledge in building isolated application environments and understanding how Docker supports efficient software development and deployment.",
+    },
 ];
 
 const CONTACTS = [
@@ -495,7 +518,7 @@ function Index() {
                 <div className="flex flex-col gap-8 md:flex-row">
                   <div className="order-2 flex-1 md:order-1">
                     <div className="mb-4 flex items-center gap-3">
-                      <span className="text-[10px] text-dim">{p.n}/03</span>
+                      <span className="text-[10px] text-dim">{p.n}</span>
                       <h3 className="text-lg font-medium">{p.title}</h3>
                     </div>
                     <p className="mb-6 max-w-[60ch] text-pretty text-sm leading-relaxed text-dim">
