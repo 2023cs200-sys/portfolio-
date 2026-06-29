@@ -180,18 +180,22 @@ export async function generatePdf(): Promise<Buffer> {
     const HS_ZOOM = 1.8;
     const HS_RENDER = HS_SIZE * HS_ZOOM;
 
-    try {
-      const imgPath = path.resolve(process.cwd(), "src/assets/portrait.jpg");
-      if (fs.existsSync(imgPath)) {
+    const headshotCandidates = [
+      path.resolve(process.cwd(), "public/portrait.jpg"),
+      path.resolve(process.cwd(), "src/assets/portrait.jpg"),
+    ];
+    const headshotPath = headshotCandidates.find((p) => { try { return fs.existsSync(p); } catch { return false; } });
+    if (headshotPath) {
+      try {
         doc.save();
         doc.circle(HS_CX, HS_CY, HS_SIZE / 2);
         doc.clip();
-        doc.image(imgPath, HS_CX - HS_RENDER / 2, HS_CY - HS_RENDER * 0.45, { width: HS_RENDER });
+        doc.image(headshotPath, HS_CX - HS_RENDER / 2, HS_CY - HS_RENDER * 0.45, { width: HS_RENDER });
         doc.restore();
-      } else {
+      } catch {
         doc.circle(HS_CX, HS_CY, HS_SIZE / 2).fillColor("#E8E8E8").fill();
       }
-    } catch {
+    } else {
       doc.circle(HS_CX, HS_CY, HS_SIZE / 2).fillColor("#E8E8E8").fill();
     }
 
