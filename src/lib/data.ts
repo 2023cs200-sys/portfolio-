@@ -43,16 +43,6 @@ export const EXPERIENCE: ExperienceEntry[] = [
     ],
   },
   {
-    title: "Gold Price Prediction with Machine Learning",
-    company: "Python · Pandas · NumPy · Scikit-learn",
-    dates: "2024",
-    location: "",
-    bullets: [
-      "Built a machine learning application using Random Forest Regressor to predict gold prices from historical market data",
-      "Implemented data preprocessing, feature engineering, and model evaluation pipeline",
-    ],
-  },
-  {
     title: "Cafe Brew - AI-Powered Coffee Shop Assistant",
     company: "Python-Flask · HTML · CSS · JavaScript",
     dates: "2024",
@@ -84,7 +74,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     ],
   },
   {
-    title: "IPL Cricket Score Predictor",
+    title: "IPL Cricket Score Predictor with Machine Learning",
     company: "Python · FastAPI · React · Docker · GitHub Actions",
     dates: "2025",
     location: "",

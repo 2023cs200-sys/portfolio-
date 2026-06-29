@@ -36,9 +36,63 @@ function drawBullet(doc: PDFKit.PDFDocument, x: number, y: number) {
   doc.circle(x, y - 2, 1.5).fill(BLACK);
 }
 
-function drawSectionIcon(doc: PDFKit.PDFDocument, x: number, y: number) {
-  const s = 3.5;
-  doc.rect(x, y - s / 2, s, s).fill(BLACK);
+function drawDocIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save(); d.translate(x - 1, y - 4);
+  d.rect(0.5, 0, 7, 9).strokeColor(BLACK).lineWidth(0.9).stroke();
+  d.moveTo(2, 3).lineTo(6, 3).strokeColor(BLACK).lineWidth(0.7).stroke();
+  d.moveTo(2, 5.5).lineTo(6, 5.5).strokeColor(BLACK).lineWidth(0.7).stroke();
+  d.moveTo(2, 8).lineTo(5, 8).strokeColor(BLACK).lineWidth(0.7).stroke();
+  d.restore();
+}
+
+function drawGearIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save(); d.translate(x - 1, y - 4);
+  d.circle(4, 4.5, 3.2).strokeColor(BLACK).lineWidth(0.9).stroke();
+  d.circle(4, 4.5, 1.3).fill(BLACK);
+  d.restore();
+}
+
+function drawGlobeSmallIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save(); d.translate(x - 1, y - 4);
+  d.circle(4, 4.5, 3.5).strokeColor(BLACK).lineWidth(0.8).stroke();
+  d.moveTo(4, 1).lineTo(4, 8).strokeColor(BLACK).lineWidth(0.7).stroke();
+  d.moveTo(0.5, 4.5).lineTo(7.5, 4.5).strokeColor(BLACK).lineWidth(0.7).stroke();
+  d.restore();
+}
+
+function drawDiplomaIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save(); d.translate(x - 1, y - 4);
+  d.rect(0.5, 1.5, 7, 5.5).strokeColor(BLACK).lineWidth(0.9).stroke();
+  d.moveTo(0.5, 1.5).lineTo(8, 5.5).lineTo(0.5, 7).strokeColor(BLACK).lineWidth(0.9).stroke();
+  d.moveTo(1.5, 3).lineTo(6, 3).strokeColor(BLACK).lineWidth(0.6).stroke();
+  d.moveTo(1.5, 4.5).lineTo(5.5, 4.5).strokeColor(BLACK).lineWidth(0.6).stroke();
+  d.restore();
+}
+
+function drawRibbonIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save(); d.translate(x - 1, y - 4);
+  d.moveTo(0.5, 0.5).lineTo(7.5, 0.5).lineTo(7.5, 6).lineTo(4, 4.5).lineTo(0.5, 6).closePath().strokeColor(BLACK).lineWidth(0.9).stroke();
+  d.moveTo(2.5, 2.3).lineTo(5.5, 2.3).strokeColor(BLACK).lineWidth(0.7).stroke();
+  d.moveTo(2.5, 3.5).lineTo(5, 3.5).strokeColor(BLACK).lineWidth(0.7).stroke();
+  d.restore();
+}
+
+function drawFolderIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save(); d.translate(x - 1, y - 4);
+  d.moveTo(0.5, 1.5).lineTo(3, 1.5).lineTo(3.5, 3.5).lineTo(7.5, 3.5).lineTo(7.5, 8).lineTo(0.5, 8).closePath().strokeColor(BLACK).lineWidth(0.9).stroke();
+  d.restore();
+}
+
+function drawSectionIcon(type: string, d: PDFKit.PDFDocument, x: number, y: number) {
+  switch (type) {
+    case "summary": drawDocIcon(d, x, y); break;
+    case "skills": drawGearIcon(d, x, y); break;
+    case "languages": drawGlobeSmallIcon(d, x, y); break;
+    case "education": drawDiplomaIcon(d, x, y); break;
+    case "certificates": drawRibbonIcon(d, x, y); break;
+    case "projects": drawFolderIcon(d, x, y); break;
+    default: { const s = 3.5; d.rect(x, y - s / 2, s, s).fill(BLACK); }
+  }
 }
 
 function drawEmailIcon(d: PDFKit.PDFDocument, x: number, y: number) {
@@ -66,7 +120,7 @@ function drawLocationIcon(d: PDFKit.PDFDocument, x: number, y: number) {
 
 function drawLinkedInIcon(d: PDFKit.PDFDocument, x: number, y: number) {
   d.save();
-  d.font("Helvetica-Bold").fontSize(5).fillColor(ORANGE);
+  d.font("Helvetica-Bold").fontSize(5.5).fillColor(ORANGE);
   d.text("in", x, y + 0.5);
   d.restore();
 }
@@ -121,32 +175,36 @@ export async function generatePdf(): Promise<Buffer> {
     const HS_X = ML;
     const HS_SIZE = 67;
     const HS_Y = y;
+    const HS_CX = HS_X + HS_SIZE / 2;
+    const HS_CY = HS_Y + HS_SIZE / 2;
+    const HS_ZOOM = 1.8;
+    const HS_RENDER = HS_SIZE * HS_ZOOM;
 
     try {
       const imgPath = path.resolve(process.cwd(), "src/assets/portrait.jpg");
       if (fs.existsSync(imgPath)) {
         doc.save();
-        doc.circle(HS_X + HS_SIZE / 2, HS_Y + HS_SIZE / 2, HS_SIZE / 2);
+        doc.circle(HS_CX, HS_CY, HS_SIZE / 2);
         doc.clip();
-        doc.image(imgPath, HS_X, HS_Y, { width: HS_SIZE, height: HS_SIZE });
+        doc.image(imgPath, HS_CX - HS_RENDER / 2, HS_CY - HS_RENDER * 0.45, { width: HS_RENDER });
         doc.restore();
       } else {
-        doc.circle(HS_X + HS_SIZE / 2, HS_Y + HS_SIZE / 2, HS_SIZE / 2).fillColor("#E8E8E8").fill();
+        doc.circle(HS_CX, HS_CY, HS_SIZE / 2).fillColor("#E8E8E8").fill();
       }
     } catch {
-      doc.circle(HS_X + HS_SIZE / 2, HS_Y + HS_SIZE / 2, HS_SIZE / 2).fillColor("#E8E8E8").fill();
+      doc.circle(HS_CX, HS_CY, HS_SIZE / 2).fillColor("#E8E8E8").fill();
     }
 
     // Name
     const NAME_X = ML + HS_SIZE + 20;
     const NAME_W = ML + CW - NAME_X;
 
-    doc.font("Times-Roman").fontSize(26).fillColor(BLACK);
+    doc.font("Times-Roman").fontSize(26.5).fillColor(BLACK);
     doc.text(PERSONAL.name, NAME_X, y + 6, { width: NAME_W });
     const nameBottom = doc.y;
 
     // Title
-    doc.font("Times-Italic").fontSize(13).fillColor(GRAY);
+    doc.font("Times-Italic").fontSize(13.5).fillColor(GRAY);
     doc.text(PERSONAL.title, NAME_X, nameBottom + 2, { width: NAME_W });
     const titleBottom = doc.y;
 
@@ -163,9 +221,12 @@ export async function generatePdf(): Promise<Buffer> {
     contacts.forEach((item) => {
       drawIcon(item.type, doc, cx, contactRow1Y);
       cx += 7;
-      doc.font("Helvetica").fontSize(7).fillColor(LIGHT);
+      doc.font("Helvetica").fontSize(7.5).fillColor(LIGHT);
       doc.text(item.text, cx, contactRow1Y, { width: 180 });
-      const textW = doc.font("Helvetica").fontSize(7).widthOfString(item.text);
+      const textW = doc.font("Helvetica").fontSize(7.5).widthOfString(item.text);
+      if (item.type === "linkedin") {
+        doc.link(cx, contactRow1Y - 1, Math.min(textW, 180), 9, PERSONAL.linkedin);
+      }
       cx += Math.min(textW, 180) + contactGap + 6;
     });
 
@@ -186,12 +247,12 @@ export async function generatePdf(): Promise<Buffer> {
     // ================================================================
 
     // --- SUMMARY ---
-    yL = drawLeftSection(doc, yL, "SUMMARY");
-    yL = wrap(doc, CV_SUMMARY, LEFT_X, yL, LEFT_W, 8, DARK, "Times-Roman") + 6;
+    yL = drawLeftSection(doc, yL, "summary", "SUMMARY");
+    yL = wrap(doc, CV_SUMMARY, LEFT_X, yL, LEFT_W, 8.5, DARK, "Times-Roman") + 6;
     yL += 14;
 
     // --- SKILLS ---
-    yL = drawLeftSection(doc, yL, "SKILLS");
+    yL = drawLeftSection(doc, yL, "skills", "SKILLS");
 
     const skillCategories: { label: string; skills: string[] }[] = [
       { label: "Languages", skills: ["Python", "JavaScript", "C", "C++"] },
@@ -205,43 +266,39 @@ export async function generatePdf(): Promise<Buffer> {
     ];
 
     skillCategories.forEach((cat) => {
-      doc.font("Helvetica-Bold").fontSize(7).fillColor(BLACK);
+      doc.font("Helvetica-Bold").fontSize(7.5).fillColor(BLACK);
       doc.text(cat.label + ":", LEFT_X, yL, { width: LEFT_W });
       yL = doc.y + 1;
-      doc.font("Times-Roman").fontSize(7.5).fillColor(DARK);
+      doc.font("Times-Roman").fontSize(8).fillColor(DARK);
       doc.text(cat.skills.join(", "), LEFT_X, yL, { width: LEFT_W });
       yL = doc.y + 4;
     });
     yL += 8;
 
     // --- LANGUAGES ---
-    yL = drawLeftSection(doc, yL, "LANGUAGES");
+    yL = drawLeftSection(doc, yL, "languages", "LANGUAGES");
 
     LANGUAGES.forEach((l) => {
-      const label = `${l.language}: `;
-      doc.font("Times-Bold").fontSize(7.5).fillColor(BLACK);
-      const labelW = doc.widthOfString(label);
-      doc.text(label, LEFT_X, yL, { width: LEFT_W, continued: false });
-      doc.font("Times-Roman").fontSize(7.5).fillColor(GRAY);
-      doc.text(l.level, LEFT_X + labelW, yL, { width: LEFT_W - labelW });
+      doc.font("Times-Roman").fontSize(8).fillColor(DARK);
+      doc.text(l.language, LEFT_X, yL, { width: LEFT_W });
       yL = doc.y + 4;
     });
 
     yL += 14;
 
     // --- EDUCATION ---
-    yL = drawLeftSection(doc, yL, "EDUCATION");
+    yL = drawLeftSection(doc, yL, "education", "EDUCATION");
 
     ACADEMIC.forEach((e, idx) => {
-      doc.font("Times-Bold").fontSize(8.5).fillColor(BLACK);
+      doc.font("Times-Bold").fontSize(9).fillColor(BLACK);
       doc.text(e.topic, LEFT_X, yL, { width: LEFT_W });
       yL = doc.y + 1;
 
-      doc.font("Times-Italic").fontSize(7.5).fillColor("#444444");
+      doc.font("Times-Italic").fontSize(8).fillColor("#444444");
       doc.text(e.institution, LEFT_X, yL, { width: LEFT_W });
       yL = doc.y;
 
-      doc.font("Helvetica").fontSize(7).fillColor(LIGHT);
+      doc.font("Helvetica").fontSize(7.5).fillColor(LIGHT);
       doc.text(`${e.badge}  |  Colombo, Sri Lanka`, LEFT_X, yL, { width: LEFT_W });
       yL = doc.y + 2;
 
@@ -249,10 +306,10 @@ export async function generatePdf(): Promise<Buffer> {
     });
 
     // --- CERTIFICATES ---
-    yL = drawLeftSection(doc, yL, "CERTIFICATES");
+    yL = drawLeftSection(doc, yL, "certificates", "CERTIFICATES");
 
     CERTS.forEach((c) => {
-      doc.font("Times-Roman").fontSize(7).fillColor(DARK);
+      doc.font("Times-Roman").fontSize(7.5).fillColor(DARK);
       doc.text(c.name, LEFT_X, yL, { width: LEFT_W });
       yL = doc.y + 4;
     });
@@ -262,14 +319,14 @@ export async function generatePdf(): Promise<Buffer> {
     // ================================================================
 
     // --- PROJECTS ---
-    yR = drawRightSection(doc, yR, "PROJECTS");
+    yR = drawRightSection(doc, yR, "projects", "PROJECTS");
 
     EXPERIENCE.forEach((job, idx) => {
-      doc.font("Times-Bold").fontSize(9.5).fillColor(BLACK);
+      doc.font("Times-Bold").fontSize(10).fillColor(BLACK);
       doc.text(job.title, RIGHT_X, yR, { width: RIGHT_W });
       yR = doc.y + 1;
 
-      doc.font("Times-Italic").fontSize(8).fillColor("#444444");
+      doc.font("Times-Italic").fontSize(8.5).fillColor("#444444");
       doc.text(job.company, RIGHT_X, yR, { width: RIGHT_W });
       yR = doc.y;
 
@@ -277,7 +334,7 @@ export async function generatePdf(): Promise<Buffer> {
 
       job.bullets.forEach((b) => {
         drawBullet(doc, RIGHT_X + 3, yR + 3);
-        doc.font("Times-Roman").fontSize(7.5).fillColor(DARK);
+        doc.font("Times-Roman").fontSize(8).fillColor(DARK);
         doc.text(b, RIGHT_X + 12, yR, { width: RIGHT_W - 12 });
         yR = doc.y + 4;
       });
@@ -289,17 +346,17 @@ export async function generatePdf(): Promise<Buffer> {
 
     const footerY = PAGE_H - 24;
     drawSectionLine(doc, ML, footerY, 80);
-    doc.font("Helvetica").fontSize(6.5).fillColor("#999999");
+    doc.font("Helvetica").fontSize(7).fillColor("#999999");
     doc.text(`${PERSONAL.name}  -  ${PERSONAL.email}`, ML, footerY + 5, { width: CW, align: "center" });
 
     doc.end();
 
     // ── HELPERS ────────────────────────────────────────────────────────────
 
-    function drawLeftSection(d: PDFKit.PDFDocument, yy: number, title: string): number {
-      drawSectionIcon(d, LEFT_X, yy + 4);
-      d.font("Helvetica-Bold").fontSize(8.5).fillColor(BLACK);
-      d.text(title, LEFT_X + 10, yy, { width: LEFT_W - 10 });
+    function drawLeftSection(d: PDFKit.PDFDocument, yy: number, icon: string, title: string): number {
+      drawSectionIcon(icon, d, LEFT_X, yy + 4);
+      d.font("Helvetica-Bold").fontSize(9).fillColor(BLACK);
+      d.text(title, LEFT_X + 14, yy, { width: LEFT_W - 14 });
       yy = d.y + 3;
       const lineW = Math.min(110, LEFT_W);
       drawSectionLine(d, LEFT_X, yy, lineW);
@@ -307,10 +364,10 @@ export async function generatePdf(): Promise<Buffer> {
       return yy;
     }
 
-    function drawRightSection(d: PDFKit.PDFDocument, yy: number, title: string): number {
-      drawSectionIcon(d, RIGHT_X, yy + 4);
-      d.font("Helvetica-Bold").fontSize(8.5).fillColor(BLACK);
-      d.text(title, RIGHT_X + 10, yy, { width: RIGHT_W - 10 });
+    function drawRightSection(d: PDFKit.PDFDocument, yy: number, icon: string, title: string): number {
+      drawSectionIcon(icon, d, RIGHT_X, yy + 4);
+      d.font("Helvetica-Bold").fontSize(9).fillColor(BLACK);
+      d.text(title, RIGHT_X + 14, yy, { width: RIGHT_W - 14 });
       yy = d.y + 3;
       const lineW = Math.min(160, RIGHT_W);
       drawSectionLine(d, RIGHT_X, yy, lineW);
