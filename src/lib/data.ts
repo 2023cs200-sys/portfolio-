@@ -4,10 +4,110 @@ export const PERSONAL = {
   tagline: "Exploring technology, securing the future, building digital solutions.",
   bio: "A Computer Science undergraduate passionate about cybersecurity, cloud infrastructure, and machine learning. I enjoy building thoughtful systems and sharing my knowledge. Through continuous learning and hands-on projects, I strive to create secure, scalable, and impactful digital solutions.",
   email: "hashinigayathrisuraweera@gmail.com",
+  phone: "+94 71 234 5678",
+  location: "Colombo, Sri Lanka",
+  birthday: "December 12, 2001",
   github: "https://github.com/2023cs200-sys",
   linkedin: "https://www.linkedin.com/in/hashini-gayathri-suraweera-880baa3a9/",
   roles: ["Software Engineer Intern", "Security Engineer Intern", "Cloud Engineer Intern", "ML Engineer Intern"],
 };
+
+export const CV_SUMMARY =
+  "Computer Science undergraduate with a strong foundation in software engineering, cybersecurity, cloud computing, and machine learning. Experienced in building full-stack web applications, security analysis tools, and predictive ML models. Passionate about creating secure, scalable digital solutions through continuous learning and hands-on project development.";
+
+export type ExperienceEntry = {
+  title: string;
+  company: string;
+  dates: string;
+  location: string;
+  bullets: string[];
+};
+
+export const EXPERIENCE: ExperienceEntry[] = [
+  {
+    title: "UniPulse – University Event Marketing System",
+    company: "HTML · CSS · JavaScript · PHP · MySQL",
+    dates: "2024",
+    location: "",
+    bullets: [
+      "Built a centralized event marketing platform for Sri Lankan universities enabling students to discover, manage, and engage with campus events",
+      "Streamlined event promotion, registration, and communication through a single unified system",
+    ],
+  },
+  {
+    title: "Password Strength Analyzer",
+    company: "Python-Flask · HTML · CSS · JavaScript",
+    dates: "2024",
+    location: "",
+    bullets: [
+      "Developed a real-time password strength checker evaluating length, character diversity, and complexity",
+      "Delivered clear visual feedback to help users understand and improve password security habits",
+      "Deployed on Vercel with a Python-Flask backend",
+    ],
+  },
+  {
+    title: "Gold Price Prediction with Machine Learning",
+    company: "Python · Pandas · NumPy · Scikit-learn",
+    dates: "2024",
+    location: "",
+    bullets: [
+      "Built a machine learning application using Random Forest Regressor to predict gold prices from historical market data",
+      "Implemented data preprocessing, feature engineering, and model evaluation pipeline",
+    ],
+  },
+  {
+    title: "Cafe Brew - AI-Powered Coffee Shop Assistant",
+    company: "Python-Flask · HTML · CSS · JavaScript",
+    dates: "2024",
+    location: "",
+    bullets: [
+      "Developed an AI-powered chatbot with NLP capabilities for intelligent real-time customer interactions",
+      "Built a seamless conversational experience using modern web technologies",
+    ],
+  },
+  {
+    title: "ZenCrypt – Encrypted Messaging Tool",
+    company: "Python-Flask · CSS · HTML · JavaScript",
+    dates: "2024",
+    location: "",
+    bullets: [
+      "Built a secure messaging tool with Base64 encryption/decryption and a modern dark-themed UI",
+      "Implemented real-time encryption, clipboard copying, and password-protected access",
+    ],
+  },
+  {
+    title: "LUDO Board Game",
+    company: "C Language · Algorithm Design",
+    dates: "2024",
+    location: "",
+    bullets: [
+      "Developed a fully playable console-based LUDO game with 4 AI players and 52-position board logic",
+      "Implemented dice rolling, piece movement, opponent capture mechanics, and random mystery cells",
+      "Built with modular C programming using custom data structures",
+    ],
+  },
+  {
+    title: "IPL Cricket Score Predictor",
+    company: "Python · FastAPI · React · Docker · GitHub Actions",
+    dates: "2025",
+    location: "",
+    bullets: [
+      "Built a full-stack ML web app predicting IPL first innings scores using Random Forest Regressor",
+      "Developed a FastAPI REST API backend with a React + Vite frontend",
+      "Containerized with Docker, automated CI/CD via GitHub Actions, deployed on Render and Vercel",
+    ],
+  },
+];
+
+export type LanguageEntry = {
+  language: string;
+  level: string;
+};
+
+export const LANGUAGES: LanguageEntry[] = [
+  { language: "Sinhala", level: "Native" },
+  { language: "English", level: "Fluent (IELTS 7.0)" },
+];
 
 export type AcademicEntry = {
   topic: string;
