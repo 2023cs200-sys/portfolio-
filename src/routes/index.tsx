@@ -138,8 +138,7 @@ function Index() {
                   type="button"
                   onClick={() => {
                     const a = document.createElement("a");
-                    a.href = "/cv.pdf";
-                    a.download = "Hashini_Gayathri_CV.pdf";
+                    a.href = "/Hashini_Gayathri_CV.pdf";
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
