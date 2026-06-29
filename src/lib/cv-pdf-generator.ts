@@ -1,5 +1,4 @@
 import PDFDocument from "pdfkit";
-import * as fs from "fs";
 import * as path from "path";
 import { PERSONAL, ACADEMIC, CERTS, CV_SUMMARY, EXPERIENCE, LANGUAGES } from "./data";
 
@@ -154,6 +153,14 @@ function drawIcon(type: string, d: PDFKit.PDFDocument, x: number, y: number) {
 }
 
 export async function generatePdf(): Promise<Buffer> {
+  // Resolve portrait path — works locally, gracefully falls back on Vercel
+  let portraitPath: string | null = null;
+  try {
+    const fs = await import("fs");
+    const p = path.resolve(process.cwd(), "src/assets/portrait.jpg");
+    if (fs.existsSync(p)) portraitPath = p;
+  } catch {}
+
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument({
       size: "A4",
@@ -181,17 +188,17 @@ export async function generatePdf(): Promise<Buffer> {
     const HS_RENDER = HS_SIZE * HS_ZOOM;
 
     try {
-      const imgPath = path.resolve(process.cwd(), "src/assets/portrait.jpg");
-      if (fs.existsSync(imgPath)) {
+      if (portraitPath) {
         doc.save();
         doc.circle(HS_CX, HS_CY, HS_SIZE / 2);
         doc.clip();
-        doc.image(imgPath, HS_CX - HS_RENDER / 2, HS_CY - HS_RENDER * 0.45, { width: HS_RENDER });
+        doc.image(portraitPath, HS_CX - HS_RENDER / 2, HS_CY - HS_RENDER * 0.45, { width: HS_RENDER });
         doc.restore();
       } else {
         doc.circle(HS_CX, HS_CY, HS_SIZE / 2).fillColor("#E8E8E8").fill();
       }
     } catch {
+      try { doc.restore(); } catch {}
       doc.circle(HS_CX, HS_CY, HS_SIZE / 2).fillColor("#E8E8E8").fill();
     }
 

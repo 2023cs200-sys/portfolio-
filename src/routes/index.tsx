@@ -14,6 +14,7 @@ import { Mail, Linkedin, Github, ExternalLink, FileText, Menu, ShieldCheck, Coin
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { ACADEMIC, PROJECTS, SKILL_CARDS, JOURNEY, POSTS, CERTS, CONTACTS, type ProjectEntry } from "@/lib/data";
 import { fetchCv } from "@/lib/cv-server";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -138,19 +139,25 @@ function Index() {
                 <button
                   type="button"
                   onClick={async () => {
-                    const result = await fetchCv();
-                    const blob = new Blob(
-                      [Uint8Array.from(atob(result.data), (c) => c.charCodeAt(0))],
-                      { type: result.type === "pdf" ? "application/pdf" : "text/plain" }
-                    );
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = result.filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
+                    try {
+                      const result = await fetchCv();
+                      if (!result.data) throw new Error("Empty PDF response");
+                      const blob = new Blob(
+                        [Uint8Array.from(atob(result.data), (c) => c.charCodeAt(0))],
+                        { type: result.type === "pdf" ? "application/pdf" : "text/plain" }
+                      );
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = result.filename;
+                      document.body.appendChild(a);
+                      a.click();
+                      document.body.removeChild(a);
+                      URL.revokeObjectURL(url);
+                    } catch (e) {
+                      console.error("CV download failed:", e);
+                      toast.error("Download failed. Try right-click → Save link as...");
+                    }
                   }}
                   className="inline-flex h-9 cursor-pointer items-center gap-2 rounded border border-border px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground/30"
                 >

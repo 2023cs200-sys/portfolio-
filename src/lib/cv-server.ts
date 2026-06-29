@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { generatePdf } from "./cv-pdf-generator";
 
-export const fetchCv = createServerFn({ method: "GET" })
+export const fetchCv = createServerFn({ method: "POST" })
   .handler(async () => {
     const pdf = await generatePdf();
 
