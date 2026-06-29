@@ -4,7 +4,7 @@ import * as path from "path";
 
 async function main() {
   const pdf = await generatePdf();
-  const out = path.resolve(process.cwd(), "public", "cv.pdf");
+  const out = path.resolve(process.cwd(), "public", "Hashini_Gayathri_CV.pdf");
   fs.writeFileSync(out, pdf);
   console.log(`CV PDF generated → ${out} (${(pdf.length / 1024).toFixed(1)} KB)`);
 }
