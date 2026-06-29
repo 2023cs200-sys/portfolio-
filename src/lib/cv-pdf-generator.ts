@@ -1,7 +1,7 @@
 import PDFDocument from "pdfkit";
 import * as fs from "fs";
 import * as path from "path";
-import { PERSONAL, ACADEMIC, SKILL_CARDS, CERTS, CV_SUMMARY, EXPERIENCE, LANGUAGES } from "./data";
+import { PERSONAL, ACADEMIC, CERTS, CV_SUMMARY, EXPERIENCE, LANGUAGES } from "./data";
 
 const PAGE_W = 595.28;
 const PAGE_H = 841.89;
@@ -41,8 +41,62 @@ function drawSectionIcon(doc: PDFKit.PDFDocument, x: number, y: number) {
   doc.rect(x, y - s / 2, s, s).fill(BLACK);
 }
 
-function drawContactDot(doc: PDFKit.PDFDocument, x: number, y: number) {
-  doc.circle(x, y - 2, 1.8).fill(ORANGE);
+function drawEmailIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save();
+  d.translate(x, y);
+  d.rect(0, 1, 5, 3.5).strokeColor(ORANGE).lineWidth(0.8).stroke();
+  d.moveTo(0, 1).lineTo(2.5, 3).lineTo(5, 1).strokeColor(ORANGE).lineWidth(0.8).stroke();
+  d.restore();
+}
+
+function drawPhoneIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save();
+  d.translate(x, y);
+  d.rect(1, 0.5, 3, 4.5).fill(ORANGE);
+  d.rect(1.5, 0, 2, 0.8).fill(ORANGE);
+  d.restore();
+}
+
+function drawLocationIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save();
+  d.translate(x, y);
+  d.circle(2.5, 1.8, 1.8).fill(ORANGE);
+  d.restore();
+}
+
+function drawLinkedInIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save();
+  d.font("Helvetica-Bold").fontSize(5).fillColor(ORANGE);
+  d.text("in", x, y + 0.5);
+  d.restore();
+}
+
+function drawGlobeIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save();
+  d.translate(x, y);
+  d.circle(2.5, 2.5, 2.2).strokeColor(ORANGE).lineWidth(0.7).stroke();
+  d.moveTo(2.5, 0.3).lineTo(2.5, 4.7).strokeColor(ORANGE).lineWidth(0.7).stroke();
+  d.moveTo(0.3, 2.5).lineTo(4.7, 2.5).strokeColor(ORANGE).lineWidth(0.7).stroke();
+  d.restore();
+}
+
+function drawCakeIcon(d: PDFKit.PDFDocument, x: number, y: number) {
+  d.save();
+  d.translate(x, y);
+  d.rect(0.5, 1.5, 4.5, 3).fill(ORANGE);
+  d.rect(2, 0.3, 1, 1.2).fill(ORANGE);
+  d.restore();
+}
+
+function drawIcon(type: string, d: PDFKit.PDFDocument, x: number, y: number) {
+  switch (type) {
+    case "email": drawEmailIcon(d, x, y); break;
+    case "phone": drawPhoneIcon(d, x, y); break;
+    case "location": drawLocationIcon(d, x, y); break;
+    case "linkedin": drawLinkedInIcon(d, x, y); break;
+    case "language": drawGlobeIcon(d, x, y); break;
+    case "birthday": drawCakeIcon(d, x, y); break;
+  }
 }
 
 export async function generatePdf(): Promise<Buffer> {
@@ -101,37 +155,22 @@ export async function generatePdf(): Promise<Buffer> {
     const contactRow2Y = contactRow1Y + 11;
     const contactGap = 16;
 
-    const contacts1 = [
-      PERSONAL.email,
-      PERSONAL.phone,
-      PERSONAL.location,
+    const contacts: { type: string; text: string }[] = [
+      { type: "email", text: PERSONAL.email },
+      { type: "linkedin", text: "linkedin.com/in/hashini-gayathri" },
     ];
 
-    const contacts2 = [
-      "linkedin.com/in/hashini-gayathri",
-      "Sinhala / English",
-      PERSONAL.birthday,
-    ];
+    let cx = NAME_X;
+    contacts.forEach((item) => {
+      drawIcon(item.type, doc, cx, contactRow1Y);
+      cx += 7;
+      doc.font("Helvetica").fontSize(7).fillColor(LIGHT);
+      doc.text(item.text, cx, contactRow1Y, { width: 180 });
+      const textW = doc.font("Helvetica").fontSize(7).widthOfString(item.text);
+      cx += Math.min(textW, 180) + contactGap + 6;
+    });
 
-    const renderContactRow = (items: string[], rowY: number) => {
-      let cx = NAME_X;
-      items.forEach((item, i) => {
-        drawContactDot(doc, cx, rowY + 2.5);
-        cx += 6;
-        doc.font("Helvetica").fontSize(7).fillColor(LIGHT);
-        doc.text(item, cx, rowY, { width: 120 });
-        const textW = doc.font("Helvetica").fontSize(7).widthOfString(item);
-        cx += Math.min(textW, 120) + contactGap;
-        if (i < items.length - 1) {
-          cx += 2;
-        }
-      });
-    };
-
-    renderContactRow(contacts1, contactRow1Y);
-    renderContactRow(contacts2, contactRow2Y);
-
-    const headerBottom = contactRow2Y + 16;
+    const headerBottom = contactRow1Y + 16;
 
     // Orange divider line
     drawSectionLine(doc, ML, headerBottom, CW);
@@ -191,13 +230,32 @@ export async function generatePdf(): Promise<Buffer> {
 
     yL += 14;
 
+    // --- EDUCATION ---
+    yL = drawLeftSection(doc, yL, "EDUCATION");
+
+    ACADEMIC.forEach((e, idx) => {
+      doc.font("Times-Bold").fontSize(8.5).fillColor(BLACK);
+      doc.text(e.topic, LEFT_X, yL, { width: LEFT_W });
+      yL = doc.y + 1;
+
+      doc.font("Times-Italic").fontSize(7.5).fillColor("#444444");
+      doc.text(e.institution, LEFT_X, yL, { width: LEFT_W });
+      yL = doc.y;
+
+      doc.font("Helvetica").fontSize(7).fillColor(LIGHT);
+      doc.text(`${e.badge}  |  Colombo, Sri Lanka`, LEFT_X, yL, { width: LEFT_W });
+      yL = doc.y + 2;
+
+      yL += idx < ACADEMIC.length - 1 ? 8 : 12;
+    });
+
     // --- CERTIFICATES ---
     yL = drawLeftSection(doc, yL, "CERTIFICATES");
 
     CERTS.forEach((c) => {
-      doc.font("Times-Roman").fontSize(7.5).fillColor(DARK);
+      doc.font("Times-Roman").fontSize(7).fillColor(DARK);
       doc.text(c.name, LEFT_X, yL, { width: LEFT_W });
-      yL = doc.y + 5;
+      yL = doc.y + 4;
     });
 
     // ================================================================
@@ -226,27 +284,6 @@ export async function generatePdf(): Promise<Buffer> {
       });
 
       yR += idx < EXPERIENCE.length - 1 ? 8 : 12;
-    });
-
-    // --- EDUCATION ---
-    yR = drawRightSection(doc, yR, "EDUCATION");
-
-    ACADEMIC.forEach((e, idx) => {
-      doc.font("Times-Bold").fontSize(9).fillColor(BLACK);
-      doc.text(e.topic, RIGHT_X, yR, { width: RIGHT_W });
-      yR = doc.y + 1;
-
-      doc.font("Times-Italic").fontSize(7.5).fillColor("#444444");
-      doc.text(e.institution, RIGHT_X, yR, { width: RIGHT_W });
-      yR = doc.y;
-
-      doc.font("Helvetica").fontSize(7).fillColor(LIGHT);
-      doc.text(`${e.badge}  |  Colombo, Sri Lanka`, RIGHT_X, yR, { width: RIGHT_W });
-      yR = doc.y + 2;
-
-      doc.font("Times-Roman").fontSize(7.5).fillColor(DARK);
-      doc.text(e.description, RIGHT_X, yR, { width: RIGHT_W });
-      yR = doc.y + 14;
     });
 
     // ── FOOTER ───────────────────────────────────────────────────────────────
