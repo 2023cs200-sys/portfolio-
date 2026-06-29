@@ -152,7 +152,6 @@ export async function generatePdf(): Promise<Buffer> {
 
     // Contact rows
     const contactRow1Y = titleBottom + 8;
-    const contactRow2Y = contactRow1Y + 11;
     const contactGap = 16;
 
     const contacts: { type: string; text: string }[] = [
@@ -291,7 +290,7 @@ export async function generatePdf(): Promise<Buffer> {
     const footerY = PAGE_H - 24;
     drawSectionLine(doc, ML, footerY, 80);
     doc.font("Helvetica").fontSize(6.5).fillColor("#999999");
-    doc.text(`${PERSONAL.name}  -  ${PERSONAL.email}  -  ${PERSONAL.phone}`, ML, footerY + 5, { width: CW, align: "center" });
+    doc.text(`${PERSONAL.name}  -  ${PERSONAL.email}`, ML, footerY + 5, { width: CW, align: "center" });
 
     doc.end();
 
