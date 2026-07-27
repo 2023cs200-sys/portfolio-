@@ -10,8 +10,8 @@ import LudoImg from "@/assets/ludo-game.jpg";
 import IPLMLImg from "@/assets/IPL_ML.jpg";
 import portraitImg from "@/assets/portrait.jpg";
 
-import { Mail, Linkedin, Github, ExternalLink, FileText, Menu, ShieldCheck, Coins, BrainCircuit, Brain, Cloud, Container} from "lucide-react";
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { Mail, Linkedin, Github, ExternalLink, FileText, Menu, ShieldCheck, Coins, BrainCircuit, Brain, Cloud, Container } from "lucide-react";
+import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { ACADEMIC, PROJECTS, SKILL_CARDS, JOURNEY, POSTS, CERTS, CONTACTS, type ProjectEntry } from "@/lib/data";
 
 export const Route = createFileRoute("/")({
@@ -50,6 +50,16 @@ const PROJECTS_WITH_IMGS: (ProjectEntry & { img: string })[] = PROJECTS.map((p) 
   img: projectImages[p.n],
 }));
 
+const NAV_ITEMS = [
+  { href: "#academic", label: "ACADEMIC", index: "01" },
+  { href: "#projects", label: "PROJECTS", index: "02" },
+  { href: "#stack", label: "STACK", index: "03" },
+  { href: "#journey", label: "JOURNEY", index: "04" },
+  { href: "#posts", label: "POSTS", index: "05" },
+  { href: "#certs", label: "CERTS", index: "06" },
+  { href: "#contact", label: "CONTACT", index: "07" },
+];
+
 const certIcons = {
   CERT_01: ShieldCheck,
   CERT_02: Coins,
@@ -65,13 +75,13 @@ function Index() {
       <div className="scanline-overlay" aria-hidden />
 
       {/* Nav */}
-      <nav className="fixed top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
-          <a href="#top" className="flex items-center gap-2 text-sm">
+      <nav className="fixed top-0 z-40 w-full border-b border-border bg-background/88 font-mono backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+          <a href="#top" className="flex items-center gap-2 text-[13px] sm:text-sm">
             <span className="font-semibold text-accent">Hashini</span>
-            <span className="tracking-tight">Gayathri</span>
+            <span>Gayathri</span>
           </a>
-          <div className="hidden gap-6 text-xs sm:flex">
+          <div className="hidden gap-6 text-[13px] font-medium sm:flex">
             <a href="#academic" className="text-dim transition-colors hover:text-accent">ACADEMIC</a>
             <a href="#projects" className="text-dim transition-colors hover:text-accent">PROJECTS</a>
             <a href="#stack" className="text-dim transition-colors hover:text-accent">STACK</a>
@@ -81,21 +91,35 @@ function Index() {
             <a href="#contact" className="text-dim transition-colors hover:text-accent">CONTACT</a>
           </div>
           <Drawer>
-            <DrawerTrigger className="sm:hidden">
-              <Menu className="size-5 text-foreground" />
+            <DrawerTrigger asChild>
+              <button
+                type="button"
+                aria-label="Open navigation menu"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-2 text-[11px] font-semibold text-foreground shadow-sm transition-colors hover:border-accent/40 hover:text-accent sm:hidden"
+              >
+                <Menu className="size-4" />
+                MENU
+              </button>
             </DrawerTrigger>
-            <DrawerContent>
-              <DrawerHeader>
-                <DrawerTitle className="text-left text-xs font-semibold uppercase tracking-widest text-accent">Navigation</DrawerTitle>
+            <DrawerContent className="h-[100dvh] max-h-[100dvh] rounded-none border-0 bg-[#050505] px-5 pb-6 pt-5 text-[#9a9a9a] [&>div:first-child]:hidden">
+              <DrawerHeader className="p-0 text-left">
+                <DrawerTitle className="text-left text-[12px] font-bold uppercase text-[#42d66b]">Navigation</DrawerTitle>
               </DrawerHeader>
-              <div className="grid gap-1 p-4">
-                <a href="#academic" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">ACADEMIC</a>
-                <a href="#projects" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">PROJECTS</a>
-                <a href="#stack" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">STACK</a>
-                <a href="#journey" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">JOURNEY</a>
-                <a href="#posts" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">POSTS</a>
-                <a href="#certs" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">CERTS</a>
-                <a href="#contact" className="rounded-lg px-4 py-3 text-sm text-dim transition-colors hover:bg-accent/5 hover:text-accent">CONTACT</a>
+
+              <div className="flex min-h-0 flex-1 flex-col justify-between py-8">
+                <div className="space-y-12 pt-8 pl-4 sm:pl-8">
+                  {NAV_ITEMS.map((item) => (
+                    <DrawerClose asChild key={item.href}>
+                      <a href={item.href} className="group block">
+                        <div className="text-[15px] font-semibold uppercase text-[#6d6d6d] transition-colors group-hover:text-[#42d66b]">
+                          {item.label}
+                        </div>
+                      </a>
+                    </DrawerClose>
+                  ))}
+                </div>
+
+                <div className="text-[11px] uppercase text-[#5c5c5c]">tap a section to jump</div>
               </div>
             </DrawerContent>
           </Drawer>
