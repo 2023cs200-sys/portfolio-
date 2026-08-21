@@ -124,10 +124,10 @@ export type ProjectEntry = {
   desc: string;
   tags: string[];
   link1: string;
-  link2: string;
+  link2?: string;
   link3?: string;
   cta1: string;
-  cta2: string;
+  cta2?: string;
   cta3?: string;
 };
 
@@ -215,6 +215,14 @@ export const PROJECTS: ProjectEntry[] = [
     link2: "https://ipl-cricket-score-predictor-ml.vercel.app/",
     cta1: "→ VIEW_REPO",
     cta2: "→ VIEW_DEMO",
+  },
+  {
+    n: "09",
+    title: "Expendora – Smart Expense Tracker (Mobile-App)",
+    desc: "Built a smart cross-platform expense tracking application that automates personal expense management using receipt OCR, cloud storage, expense analytics, and workflow automation. Developed a React Native mobile application with a Flask REST API backend, Tesseract OCR for extracting expense details from receipts, MongoDB Atlas for data storage, Cloudinary for receipt management, and n8n for automated workflows such as monthly reports and email summaries.",
+    tags: ["React Native","Expo","Flask","Python","Tesseract OCR","MongoDB Atlas","Cloudinary","n8n","REST API","JWT"],
+    link1: "https://github.com/samithna25/Expendora.git",
+    cta1: "→ VIEW_REPO",
   },
 ];
 

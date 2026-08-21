@@ -8,6 +8,7 @@ import SkySecureImg from "@/assets/skysecure.jpg";
 import ZenCryptoImg from "@/assets/ZenCrypt.jpg";
 import LudoImg from "@/assets/ludo-game.jpg";
 import IPLMLImg from "@/assets/IPL_ML.jpg";
+import EXPENDORAImg from "@/assets/expendora.jpeg";
 import portraitImg from "@/assets/portrait.jpg";
 
 import { Mail, Linkedin, Github, ExternalLink, FileText, Menu, ShieldCheck, Coins, BrainCircuit, Brain, Cloud, Container } from "lucide-react";
@@ -43,6 +44,7 @@ const projectImages: Record<string, string> = {
   "06": ZenCryptoImg,
   "07": LudoImg,
   "08": IPLMLImg,
+  "09": EXPENDORAImg,
 };
 
 const PROJECTS_WITH_IMGS: (ProjectEntry & { img: string })[] = PROJECTS.map((p) => ({
@@ -271,17 +273,19 @@ function Index() {
                         <Github className="size-3.5" strokeWidth={1.5} />
                         {p.cta1.replace("→ ", "")}
                       </a>
-                      <a
-                        href={p.link2}
-                        className="inline-flex h-8 items-center gap-2 rounded border border-accent/40 bg-accent/5 px-3 text-[10px] font-semibold tracking-widest text-accent transition-colors hover:bg-accent/10 hover:text-accent"
-                      >
-                        {p.cta2.includes("DOCUMENTATION") ? (
-                          <FileText className="size-3.5" strokeWidth={1.5} />
-                        ) : (
-                          <ExternalLink className="size-3.5" strokeWidth={1.5} />
-                        )}
-                        {p.cta2.replace("→ ", "")}
-                      </a>
+                      {p.link2 && p.cta2 && (
+                        <a
+                          href={p.link2}
+                          className="inline-flex h-8 items-center gap-2 rounded border border-accent/40 bg-accent/5 px-3 text-[10px] font-semibold tracking-widest text-accent transition-colors hover:bg-accent/10 hover:text-accent"
+                        >
+                          {p.cta2.includes("DOCUMENTATION") ? (
+                            <FileText className="size-3.5" strokeWidth={1.5} />
+                          ) : (
+                            <ExternalLink className="size-3.5" strokeWidth={1.5} />
+                          )}
+                          {p.cta2.replace("→ ", "")}
+                        </a>
+                      )}
                       {p.link3 && p.cta3 && (
                         <a
                           href={p.link3}
@@ -305,7 +309,7 @@ function Index() {
                         width={1024}
                         height={640}
                         loading="lazy"
-                        className="aspect-video w-full object-cover opacity-80 transition-opacity duration-500 group-hover:opacity-100"
+                        className={`aspect-video w-full ${p.n === "09" ? "object-contain" : "object-cover"} opacity-80 transition-opacity duration-500 group-hover:opacity-100`}
                       />
                     </div>
                   </div>
