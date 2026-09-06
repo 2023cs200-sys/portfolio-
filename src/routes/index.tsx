@@ -10,6 +10,7 @@ import LudoImg from "@/assets/ludo-game.jpg";
 import IPLMLImg from "@/assets/IPL_ML.jpg";
 import EXPENDORAImg from "@/assets/expendora.jpeg";
 import portraitImg from "@/assets/portrait.jpg";
+import cparserImg from "@/assets/c-parser.jpg";
 
 import { Mail, Linkedin, Github, ExternalLink, FileText, Menu, ShieldCheck, Coins, BrainCircuit, Brain, Cloud, Container } from "lucide-react";
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
@@ -45,6 +46,7 @@ const projectImages: Record<string, string> = {
   "07": LudoImg,
   "08": IPLMLImg,
   "09": EXPENDORAImg,
+  "10": cparserImg,
 };
 
 const PROJECTS_WITH_IMGS: (ProjectEntry & { img: string })[] = PROJECTS.map((p) => ({

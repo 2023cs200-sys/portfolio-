@@ -224,6 +224,14 @@ export const PROJECTS: ProjectEntry[] = [
     link1: "https://github.com/samithna25/Expendora.git",
     cta1: "→ VIEW_REPO",
   },
+  {
+    n: "10",
+    title: "C-Parser – C Language Code Parser and Analyzer",
+    desc: "Built a C language parser in C that tokenizes source code, validates it against a Context-Free Grammar (CFG), detects syntax and semantic errors, and evaluates arithmetic expressions. Implemented a command-line program that reads C source files and executes valid statements such as variable declarations, arithmetic operations, and print statements.",
+    tags: ["C","Compiler Design","CFG","Tokenization","Parsing","Syntax Analysis","Semantic Analysis","Command Line"],
+    link1: "https://github.com/2023cs200-sys/c-parser.git",
+    cta1: "→ VIEW_REPO",
+  },
 ];
 
 export type SkillCard = {
