@@ -226,11 +226,21 @@ export const PROJECTS: ProjectEntry[] = [
   },
   {
     n: "10",
-    title: "C-Parser – C Language Code Parser and Analyzer",
+    title: "Parser – C Language Code Parser and Analyzer",
     desc: "Built a C language parser in C that tokenizes source code, validates it against a Context-Free Grammar (CFG), detects syntax and semantic errors, and evaluates arithmetic expressions. Implemented a command-line program that reads C source files and executes valid statements such as variable declarations, arithmetic operations, and print statements.",
     tags: ["C","Compiler Design","CFG","Tokenization","Parsing","Syntax Analysis","Semantic Analysis","Command Line"],
     link1: "https://github.com/2023cs200-sys/c-parser.git",
     cta1: "→ VIEW_REPO",
+  },
+  {
+    n: "11",
+    title: "FruSliceZy | Motion-Controlled Fruit Cutting Game",
+    desc: "A real-time motion-controlled fruit-cutting game where a smartphone acts as a wireless controller. Uses accelerometer and gyroscope data from Expo Sensors and transmits phone movement in real time through a Python WebSocket server to control an in-game sword. Features motion-based slicing, sensor calibration and smoothing, scoring, combos, bombs, particles, sound effects, and mouse gameplay fallback. Built as a hands-on project to apply WebSockets, mobile sensors, and real-time communication.",
+    tags: ["WebSockets", "React Native", "Expo", "Python", "JavaScript"],
+    link1: "https://github.com/2023cs200-sys/FruSliceZy.git",
+    link2: "https://fruslicezy.netlify.app/",
+    cta1: "→ VIEW_REPO",
+    cta2: "→ VIEW_DOCUMENTATION",
   },
 ];
 
@@ -358,11 +368,14 @@ export type PostEntry = {
   title: string;
   platform: string;
   href: string;
+  kind: "LINKEDIN_POST" | "WEB_LINK";
 };
 
 export const POSTS: PostEntry[] = [
-  { code: "POST_01", title: "APK Security: How to Stay Safe on Android", platform: "LINKEDIN_ARTICLE", href: "https://www.linkedin.com/posts/hashini-gayathri-suraweera-880baa3a9_cybersecurity-cyberawareness-androidsecurity-activity-7470178338146275329-d0no?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAGQFxmABFK7OQjpfJOe4yq-Ff0I6J1QkHz8" },
-  { code: "POST_02", title: "Responding to a Trojan Malware Incident", platform: "LINKEDIN_ARTICLE", href: "https://www.linkedin.com/posts/hashini-gayathri-suraweera-880baa3a9_recently-i-experienced-a-real-cybersecurity-activity-7465736593664835584-KbJS?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAGQFxmABFK7OQjpfJOe4yq-Ff0I6J1QkHz8" },
+  { code: "POST_01", title: "APK Security: How to Stay Safe on Android", platform: "LINKEDIN_POST", kind: "LINKEDIN_POST", href: "https://www.linkedin.com/posts/hashini-gayathri-suraweera-880baa3a9_cybersecurity-cyberawareness-androidsecurity-activity-7470178338146275329-d0no?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAGQFxmABFK7OQjpfJOe4yq-Ff0I6J1QkHz8" },
+  { code: "POST_02", title: "Responding to a Trojan Malware Incident", platform: "LINKEDIN_POST", kind: "LINKEDIN_POST", href: "https://www.linkedin.com/posts/hashini-gayathri-suraweera-880baa3a9_recently-i-experienced-a-real-cybersecurity-activity-7465736593664835584-KbJS?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAGQFxmABFK7OQjpfJOe4yq-Ff0I6J1QkHz8" },
+  { code: "POST_03", title: "Websockets", platform: "WEB_LINK", kind: "WEB_LINK", href: "https://fruslicezy.netlify.app" },
+  { code: "POST_04", title: "Docker", platform: "WEB_LINK", kind: "WEB_LINK", href: "https://docker-hand-book.netlify.app" },
 ];
 
 export type CertEntry = {

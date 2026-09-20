@@ -11,6 +11,8 @@ import IPLMLImg from "@/assets/IPL_ML.jpg";
 import EXPENDORAImg from "@/assets/expendora.jpeg";
 import portraitImg from "@/assets/portrait.jpg";
 import cparserImg from "@/assets/c-parser.jpg";
+import fruslicezyImg from "@/assets/fruslicezy.jpg";
+import fruslicezyMAImg from "@/assets/fruslicezyMA.jpg";
 
 import { Mail, Linkedin, Github, ExternalLink, FileText, Menu, ShieldCheck, Coins, BrainCircuit, Brain, Cloud, Container } from "lucide-react";
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
@@ -36,7 +38,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const projectImages: Record<string, string> = {
+const projectImages: Record<string, string | string[]> = {
   "01": unipulseImg,
   "02": psaImg,
   "03": goldMLImg,
@@ -47,9 +49,10 @@ const projectImages: Record<string, string> = {
   "08": IPLMLImg,
   "09": EXPENDORAImg,
   "10": cparserImg,
+  "11": [fruslicezyImg, fruslicezyMAImg],
 };
 
-const PROJECTS_WITH_IMGS: (ProjectEntry & { img: string })[] = PROJECTS.map((p) => ({
+const PROJECTS_WITH_IMGS: (ProjectEntry & { img: string | string[] })[] = PROJECTS.map((p) => ({
   ...p,
   img: projectImages[p.n],
 }));
@@ -304,15 +307,19 @@ function Index() {
                     </div>
                   </div>
                   <div className="order-1 w-full shrink-0 md:order-2 md:w-120">
-                    <div className="overflow-hidden rounded-lg border border-border bg-surface">
-                      <img
-                        src={p.img}
-                        alt={`${p.title} preview`}
-                        width={1024}
-                        height={640}
-                        loading="lazy"
-                        className={`aspect-video w-full ${p.n === "09" ? "object-contain" : "object-cover"} opacity-80 transition-opacity duration-500 group-hover:opacity-100`}
-                      />
+                    <div className="space-y-4">
+                      {(Array.isArray(p.img) ? p.img : [p.img]).map((img, index) => (
+                        <div key={img} className="overflow-hidden rounded-lg border border-border bg-surface">
+                          <img
+                            src={img}
+                            alt={`${p.title} preview ${index + 1}`}
+                            width={1024}
+                            height={640}
+                            loading="lazy"
+                            className={`aspect-video w-full ${p.n === "09" ? "object-contain" : "object-cover"} opacity-80 transition-opacity duration-500 group-hover:opacity-100`}
+                          />
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -415,15 +422,15 @@ function Index() {
           </div>
         </section>
 
-        {/* Educational Posts */}
+        {/* Knowledge sharing */}
         <section id="posts" className="mx-auto mb-32 max-w-6xl px-6">
-          <SectionHeader label="05. Knowledge Share" right="LINKEDIN_POSTS" />
+          <SectionHeader label="05. Knowledge Share" right="POSTS_AND_WEB_LINKS" />
           <div className="mb-10 max-w-[58ch]">
             <h3 className="text-2xl font-medium leading-tight">
               Educational content & insights
             </h3>
             <p className="mt-2 text-sm text-dim">
-              Sharing cybersecurity and tech knowledge through LinkedIn articles.
+              Sharing cybersecurity and technology knowledge through LinkedIn posts and useful web resources.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -434,7 +441,11 @@ function Index() {
                 className="group flex items-center gap-4 rounded-xl border border-border bg-surface/40 p-4 transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:bg-surface/70"
               >
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/5 text-accent">
-                  <Linkedin className="size-5" strokeWidth={1.5} />
+                  {post.kind === "LINKEDIN_POST" ? (
+                    <Linkedin className="size-5" strokeWidth={1.5} />
+                  ) : (
+                    <ExternalLink className="size-5" strokeWidth={1.5} />
+                  )}
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="mb-1 text-[9px] font-semibold tracking-widest text-accent">
